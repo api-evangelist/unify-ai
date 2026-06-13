@@ -1,0 +1,71 @@
+name: Unify Rate Limits
+description: >
+  Unify applies rate limits at the API gateway level to ensure fair usage across
+  all consumers and protect the reliability of provider routing. Because Unify
+  aggregates across 100+ upstream LLM providers, effective throughput depends on
+  both Unify's own gateway limits and the underlying limits of the target model
+  and provider. Unify's routing layer manages fallbacks and load balancing to
+  maximize throughput within these constraints. Specific numeric limits are
+  credit-tier dependent and available via the console. The platform itself helps
+  users avoid hitting individual provider rate limits through intelligent routing
+  and load distribution.
+specificationVersion: '0.1'
+limits:
+  - name: API Request Rate
+    description: >
+      Requests per minute to the Unify gateway API. Limits scale with account
+      tier and credit balance. New accounts with free credits operate at a
+      standard rate suitable for development and testing. Higher throughput is
+      available for accounts with active credit balance.
+    scope: account
+    window: 60 seconds
+    unit: requests
+    tier: standard
+    notes: >
+      Exact RPM limits are tier-dependent and visible in the console dashboard.
+      Contact Unify for high-throughput production limits.
+  - name: Concurrent Requests
+    description: >
+      Maximum number of simultaneous in-flight requests to the Unify gateway.
+      The platform supports parallel routing to multiple providers simultaneously
+      for comparison and fallback scenarios.
+    scope: account
+    unit: concurrent requests
+    tier: standard
+    notes: >
+      Concurrency limits scale with credit tier. The routing layer may fan out
+      a single request to multiple providers for benchmarking or fallback.
+  - name: Provider-Level Limits
+    description: >
+      Each upstream provider (OpenAI, Anthropic, Mistral, etc.) enforces its
+      own rate limits based on the credentials used. Unify uses shared provider
+      API keys for free/standard tier routing. Users can supply their own
+      provider API keys in the console to use their own provider rate limit
+      quotas, bypassing shared pool constraints.
+    scope: provider
+    unit: varies by provider
+    notes: >
+      Bringing your own provider API keys (BYOK) is supported for all major
+      providers and recommended for production workloads requiring high throughput.
+  - name: Message Attachment Size
+    description: >
+      File attachments sent via the API messaging endpoint are limited to 10 files
+      per message. This applies to the Unify assistant messaging REST API endpoint.
+    scope: request
+    limit: 10
+    unit: files per message
+  - name: Credit Balance Throttling
+    description: >
+      API access is gated on account credit balance. When credits are exhausted,
+      requests return a 402 Payment Required response until the account is topped
+      up. There is no hard rate limit based on time window alone — sustained access
+      requires maintaining a positive credit balance.
+    scope: account
+    unit: USD credits
+    notes: >
+      Monitor credit usage via the console dashboard at console.unify.ai.
+urls:
+  - type: Documentation
+    url: https://docs.unify.ai
+  - type: Console
+    url: https://console.unify.ai

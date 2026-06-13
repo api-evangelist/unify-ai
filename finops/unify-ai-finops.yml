@@ -1,0 +1,113 @@
+name: Unify FinOps Framework
+description: >
+  FinOps Framework 1.0 FOCUS-aligned cost management data for the Unify LLM
+  routing and model gateway platform. Unify's core value proposition is cost
+  optimization: the routing layer selects the cheapest provider meeting quality
+  and latency thresholds on every prompt, providing an inherent FinOps function.
+  Costs are consumption-based, denominated in USD credits, and passed through
+  from underlying providers with Unify's routing overhead included.
+specificationVersion: '1.0'
+framework: FinOps Framework
+alignment: FOCUS 1.0
+provider: Unify
+providerURL: https://unify.ai
+costModel:
+  type: consumption
+  currency: USD
+  billingUnit: credits
+  description: >
+    Unify charges on a credit consumption basis. Credits map to underlying LLM
+    API costs (input tokens + output tokens) at the target model and provider,
+    plus Unify's routing and infrastructure margin. Users prepay credits via the
+    console and are debited per request.
+costCategories:
+  - name: LLM Token Consumption
+    description: >
+      Primary cost driver. Input and output tokens processed by the selected LLM
+      provider. Cost per token varies by model and provider (e.g., GPT-4o at
+      OpenAI is more expensive than Llama-3 at Together AI). Unify's optimizer
+      selects cheaper providers that meet defined quality/latency thresholds,
+      directly reducing this cost category.
+    unit: per token (input + output)
+    variability: high
+    optimizationStrategies:
+      - Use quality-cost-speed optimizer routing to select cheapest qualifying provider
+      - Enable response caching to avoid duplicate token charges on repeated prompts
+      - Set explicit cost thresholds in routing optimizer parameters
+      - Use smaller/cheaper models for classification and routing subtasks
+  - name: API Request Overhead
+    description: >
+      Per-request routing and infrastructure overhead charged by Unify on top of
+      underlying provider costs. Covers the routing intelligence, benchmarking
+      data freshness, and gateway reliability layer.
+    unit: per request
+    variability: low
+    optimizationStrategies:
+      - Batch requests where possible to amortize per-request overhead
+      - Use caching layer to serve repeated prompts without re-routing
+  - name: Benchmark and Evaluation Costs
+    description: >
+      Running model comparison benchmarks and custom evaluations on Unify consumes
+      credits proportional to the number of model-prompt combinations evaluated.
+      Benchmarking multiple providers simultaneously multiplies token costs.
+    unit: per benchmark run (per model x prompt)
+    variability: medium
+    optimizationStrategies:
+      - Limit benchmark scope to candidate providers rather than all 100+
+      - Cache benchmark results and refresh on a scheduled cadence rather than per-run
+      - Use Unify's pre-computed live benchmarks instead of custom runs where sufficient
+costAllocation:
+  tags:
+    - name: endpoint
+      description: model@provider routing target (e.g., gpt-4o@openai)
+    - name: optimizer
+      description: routing strategy used (quality, cost, latency, or custom)
+    - name: project
+      description: logical project grouping for multi-team cost attribution
+    - name: tag
+      description: arbitrary message tags for routing context and cost attribution
+  description: >
+    Unify supports message-level tagging via the API for cost attribution.
+    Tags are arbitrary strings echoed back in responses, enabling downstream
+    cost allocation by feature, team, or use case in the observability dashboard.
+optimization:
+  - name: Optimizer Routing
+    description: >
+      Use Unify's built-in optimizer strings (e.g., quality>0.8, cost, ttft)
+      to automatically route each prompt to the cheapest provider meeting
+      specified thresholds rather than hardcoding expensive flagship models.
+  - name: Response Caching
+    description: >
+      Enable caching to serve repeated identical prompts from cache without
+      incurring token costs. Particularly valuable for RAG pipelines, chatbot
+      FAQ patterns, and development/testing loops.
+  - name: Fallback Routing
+    description: >
+      Configure fallback provider chains so requests automatically retry on
+      cheaper backup providers when a primary provider is unavailable or slow,
+      avoiding wasted spend on timeouts.
+  - name: BYOK (Bring Your Own Keys)
+    description: >
+      Supply your own provider API keys to bypass Unify's shared provider pools,
+      using negotiated enterprise pricing or existing committed-use discounts with
+      providers like OpenAI or Anthropic directly.
+  - name: Credit Monitoring
+    description: >
+      Monitor credit consumption and set usage alerts via console.unify.ai to
+      prevent unexpected spend exhaustion and maintain budget visibility.
+observability:
+  dashboard: https://console.unify.ai
+  metrics:
+    - Cost per request by model and provider
+    - Token consumption (input vs output) by endpoint
+    - Latency vs cost tradeoff visualization
+    - Cache hit rate
+    - Provider routing distribution
+    - Credit burn rate over time
+urls:
+  - type: Console
+    url: https://console.unify.ai
+  - type: Pricing
+    url: https://unify.ai/pricing
+  - type: Documentation
+    url: https://docs.unify.ai

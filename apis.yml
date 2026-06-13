@@ -1,0 +1,83 @@
+aid: unify-ai
+name: Unify
+description: >
+  Unify is an LLM routing and model gateway platform that enables developers to
+  access 100+ large language model providers through a single unified REST API
+  and API key. The platform dynamically routes each prompt to the optimal model
+  based on user-defined preferences across quality, speed, and cost dimensions,
+  using live runtime benchmarks updated continuously across providers including
+  OpenAI, Anthropic, Mistral, Together AI, Replicate, Groq, DeepSeek, and many
+  more. Unify provides an observability dashboard for comparing model and provider
+  performance, automatic fallback routing, and caching capabilities to reduce
+  redundant API calls. Developers can benchmark models on their own prompts using
+  standardized datasets and switch providers without rewriting application code
+  using the unified model@provider endpoint syntax.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/unify-ai/refs/heads/main/apis.yml
+created: '2026-06-12'
+modified: '2026-06-12'
+specificationVersion: '0.19'
+tags:
+  - LLM
+  - AI
+  - Large Language Models
+  - LLM Routing
+  - Model Gateway
+  - AI Gateway
+  - OpenAI
+  - Anthropic
+  - Mistral
+  - Benchmarking
+  - Model Comparison
+  - AI Infrastructure
+  - Machine Learning
+apis:
+  - name: Unify Universal API
+    description: >
+      The Unify Universal API provides a single REST endpoint with Bearer token
+      authentication for routing LLM requests to 100+ model providers including
+      OpenAI, Anthropic, Mistral, Together AI, Replicate, Groq, DeepSeek, Vertex
+      AI, and more. Requests use the model@provider syntax for explicit routing
+      or optimizer strings for automatic routing based on quality, cost, and speed
+      preferences. The API is OpenAI-compatible, supports streaming, caching,
+      fallbacks, and structured logging.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://unify.ai
+    baseURL: https://api.unify.ai/v0
+    tags:
+      - LLM Routing
+      - Model Gateway
+      - AI
+      - REST API
+    properties:
+      - type: Documentation
+        url: https://docs.unify.ai
+      - type: OpenAPI
+        url: https://docs.unify.ai/api-reference
+common:
+  - type: Website
+    url: https://unify.ai
+  - type: Documentation
+    url: https://docs.unify.ai
+  - type: GitHubOrg
+    url: https://github.com/unifyai
+  - type: LinkedIn
+    url: https://uk.linkedin.com/company/letsunifyai
+  - type: Blog
+    url: https://unify.ai/blog
+  - type: Pricing
+    url: https://unify.ai/pricing
+  - type: StatusPage
+    url: https://statusgator.com/services/unify
+  - type: X
+    url: https://x.com/letsunifyai
+  - type: Plans
+    url: plans/unify-ai-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/unify-ai-rate-limits.yml
+  - type: FinOps
+    url: finops/unify-ai-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

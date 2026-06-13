@@ -1,0 +1,67 @@
+name: Unify Plans and Pricing
+description: >
+  Unify offers a credit-based pay-as-you-go model for accessing LLM endpoints
+  through its routing gateway. New users receive $50 in free credits upon signup
+  to explore the platform. Pricing is consumption-based, with costs passed through
+  from the underlying LLM providers plus Unify's routing and infrastructure layer.
+  The platform provides live runtime benchmarks to help users find cost-optimal
+  model and provider combinations.
+specificationVersion: '0.1'
+plans:
+  - name: Free Starter Credits
+    description: >
+      New users receive $50 in free credits upon account creation. Provides full
+      access to all supported LLM providers and routing features to evaluate the
+      platform before committing to paid usage.
+    price: 0.00
+    currency: USD
+    billingPeriod: one-time
+    features:
+      - $50 in free credits on signup
+      - Access to 100+ LLM providers
+      - Benchmarking dashboard
+      - Model comparison tools
+      - Automatic routing optimizer
+      - Console access at console.unify.ai
+  - name: Pay-As-You-Go
+    description: >
+      Consumption-based pricing with no monthly commitment. Costs are determined
+      by the underlying model and provider selected for each request, plus Unify's
+      routing infrastructure overhead. Users top up credits and pay only for what
+      they use. Enables cost optimization by automatically routing to cheaper
+      providers meeting quality and latency thresholds.
+    price: variable
+    currency: USD
+    billingPeriod: consumption
+    unit: per token / per request
+    features:
+      - Access to 100+ LLM providers
+      - Dynamic routing by quality, cost, or speed
+      - Caching to reduce redundant calls
+      - Fallback routing on provider errors
+      - Observability and logging dashboard
+      - API key management via console
+      - Structured logging and tagging
+      - Streaming support
+      - OpenAI-compatible interface
+  - name: Enterprise / Custom Benchmarking
+    description: >
+      Custom benchmark development services for enterprises needing tailored
+      evaluation pipelines and dedicated routing configurations. Includes custom
+      eval datasets, private benchmark runs, and direct support from the Unify
+      team. Contact Unify for pricing.
+    price: custom
+    currency: USD
+    billingPeriod: custom
+    features:
+      - Custom benchmark dataset creation
+      - Private model evaluation runs
+      - Dedicated support
+      - Custom routing configurations
+      - On-premises deployment options
+      - SLA guarantees
+urls:
+  - type: Pricing
+    url: https://unify.ai/pricing
+  - type: Console
+    url: https://console.unify.ai
