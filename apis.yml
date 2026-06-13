@@ -55,6 +55,16 @@ apis:
         url: https://docs.unify.ai
       - type: OpenAPI
         url: https://docs.unify.ai/api-reference
+      - type: OpenAPI
+        url: openapi/unify-ai-universal-api-openapi.yml
+      - type: JSONSchema
+        url: json-schema/unify-ai-log.json
+      - type: JSONSchema
+        url: json-schema/unify-ai-assistant.json
+      - type: Example
+        url: examples/unify-ai-create-log-example.json
+      - type: Example
+        url: examples/unify-ai-send-message-example.json
 common:
   - type: Website
     url: https://unify.ai
@@ -78,6 +88,10 @@ common:
     url: rate-limits/unify-ai-rate-limits.yml
   - type: FinOps
     url: finops/unify-ai-finops.yml
+  - type: Vocabulary
+    url: vocabulary/unify-ai-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/unify-ai-context.jsonld
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

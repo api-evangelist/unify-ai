@@ -1,0 +1,138 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "unify": "https://unify.ai/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Project": "unify:Project",
+    "Context": "unify:Context",
+    "LogEntry": "unify:LogEntry",
+    "Assistant": "unify:Assistant",
+    "Space": "unify:Space",
+    "Message": "unify:Message",
+    "Commit": "unify:Commit",
+    "Organization": "unify:Organization",
+
+    "projectName": {
+      "@id": "unify:projectName",
+      "@type": "xsd:string"
+    },
+    "contextName": {
+      "@id": "unify:contextName",
+      "@type": "xsd:string"
+    },
+    "logId": {
+      "@id": "unify:logId",
+      "@type": "xsd:integer"
+    },
+    "entries": {
+      "@id": "unify:entries"
+    },
+    "assistantId": {
+      "@id": "unify:assistantId",
+      "@type": "xsd:integer"
+    },
+    "firstName": {
+      "@id": "unify:firstName",
+      "@type": "xsd:string"
+    },
+    "surname": {
+      "@id": "unify:surname",
+      "@type": "xsd:string"
+    },
+    "config": {
+      "@id": "unify:config"
+    },
+    "spaceId": {
+      "@id": "unify:spaceId",
+      "@type": "xsd:integer"
+    },
+    "spaceName": {
+      "@id": "unify:spaceName",
+      "@type": "xsd:string"
+    },
+    "messageId": {
+      "@id": "unify:messageId",
+      "@type": "xsd:integer"
+    },
+    "role": {
+      "@id": "unify:role",
+      "@type": "xsd:string"
+    },
+    "content": {
+      "@id": "unify:content",
+      "@type": "xsd:string"
+    },
+    "commitId": {
+      "@id": "unify:commitId",
+      "@type": "xsd:string"
+    },
+    "organizationId": {
+      "@id": "unify:organizationId",
+      "@type": "xsd:integer"
+    },
+    "credits": {
+      "@id": "unify:credits",
+      "@type": "xsd:decimal"
+    },
+    "category": {
+      "@id": "unify:category",
+      "@type": "xsd:string"
+    },
+    "baseURL": {
+      "@id": "unify:baseURL",
+      "@type": "@id"
+    },
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "name": "schema:name",
+    "description": "schema:description",
+    "email": "schema:email",
+    "url": "schema:url"
+  },
+  "@graph": [
+    {
+      "@id": "unify:Project",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Project",
+      "rdfs:comment": "A top-level namespace grouping log entries, contexts, and versioned snapshots in the Unify platform."
+    },
+    {
+      "@id": "unify:LogEntry",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Log Entry",
+      "rdfs:comment": "A structured record of an event with arbitrary key-value fields, typically capturing LLM completions."
+    },
+    {
+      "@id": "unify:Assistant",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Assistant",
+      "rdfs:comment": "An AI agent managed within the Unify platform that can receive messages and belong to Spaces."
+    },
+    {
+      "@id": "unify:Space",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Space",
+      "rdfs:comment": "A collaboration boundary that groups multiple Assistants together within the Unify platform."
+    },
+    {
+      "@id": "https://api.unify.ai/v0",
+      "@type": "schema:WebAPI",
+      "schema:name": "Unify Universal API",
+      "schema:description": "Unified REST API for LLM routing, persistence, logging, assistant management, and project organisation.",
+      "schema:url": "https://api.unify.ai/v0",
+      "schema:documentation": "https://docs.unify.ai",
+      "schema:provider": {
+        "@type": "schema:Organization",
+        "schema:name": "Unify",
+        "schema:url": "https://unify.ai"
+      }
+    }
+  ]
+}

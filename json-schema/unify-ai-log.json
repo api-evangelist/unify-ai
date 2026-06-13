@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.unify.ai/v0/schemas/log",
+  "title": "Unify Log Entry",
+  "description": "A structured log entry in the Unify platform, used to record LLM calls, agent interactions, and arbitrary key-value telemetry within a project and optional context.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique log entry identifier assigned by the platform"
+    },
+    "ts": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of when the log entry was created"
+    },
+    "project": {
+      "type": "string",
+      "description": "Name of the project this log belongs to"
+    },
+    "context": {
+      "type": ["string", "null"],
+      "description": "Optional context path within the project (e.g. 'eval/run-42')"
+    },
+    "entries": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Arbitrary key-value pairs recorded in this log entry (e.g. prompt, response, model, latency_ms, cost)"
+    }
+  },
+  "required": ["id", "ts", "project"]
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.unify.ai/v0/schemas/assistant",
+  "title": "Unify Assistant",
+  "description": "An AI assistant managed within the Unify platform. Assistants can be members of spaces, receive messages, and be preseeded with initial knowledge or configuration.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique assistant identifier"
+    },
+    "first_name": {
+      "type": "string",
+      "description": "Assistant's first name"
+    },
+    "surname": {
+      "type": ["string", "null"],
+      "description": "Assistant's surname"
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Editable configuration fields such as persona, model preference, and system prompt"
+    }
+  },
+  "required": ["id", "first_name"]
+}

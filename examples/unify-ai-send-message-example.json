@@ -1,0 +1,26 @@
+{
+  "title": "Send a message to an assistant",
+  "description": "Example POST /messages request to send a user message to a Unify assistant and receive a reply.",
+  "request": {
+    "method": "POST",
+    "url": "https://api.unify.ai/v0/messages",
+    "headers": {
+      "Authorization": "Bearer <UNIFY_KEY>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "assistant_id": 42,
+      "content": "What is the capital of France?",
+      "role": "user"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": 9981,
+      "role": "assistant",
+      "content": "The capital of France is Paris.",
+      "ts": "2026-06-12T10:35:01Z"
+    }
+  }
+}

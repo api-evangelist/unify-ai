@@ -1,0 +1,87 @@
+vocabulary:
+  - term: Project
+    definition: >
+      A top-level namespace within the Unify platform that groups together
+      log entries, contexts, and versioned snapshots. Projects are created
+      by a user and can be committed and rolled back like a version-controlled
+      repository.
+
+  - term: Context
+    definition: >
+      A named sub-collection of log entries within a project. Contexts are
+      used to organise related runs, experiments, or evaluation sets (e.g.
+      "eval/run-42"). Contexts can be committed, rolled back, and renamed
+      independently of their parent project.
+
+  - term: Log Entry
+    definition: >
+      A structured record of an event within a project, containing an
+      arbitrary set of key-value fields (entries). Typically used to record
+      LLM completions including prompt, response, model, provider, latency,
+      token counts, and cost.
+
+  - term: Assistant
+    definition: >
+      An AI agent managed within the Unify platform. Assistants have a
+      first name, optional surname, and a configurable profile. They can
+      belong to one or more Spaces, receive messages via the Messages API,
+      and be preseeded with initial knowledge.
+
+  - term: Space
+    definition: >
+      A collaboration boundary that groups multiple Assistants together.
+      Spaces allow teams to scope conversations and shared state to a
+      defined set of assistants and users.
+
+  - term: Message
+    definition: >
+      A single conversational turn sent to or received from an Assistant
+      via the Unify Messages API. Messages carry a role (user, assistant,
+      or system) and a text content payload.
+
+  - term: UNIFY_KEY
+    definition: >
+      The Bearer token used to authenticate all Unify API requests. Set
+      as the UNIFY_KEY environment variable or passed as the api_key argument
+      to SDK functions.
+
+  - term: Credits
+    definition: >
+      The internal billing unit used by the Unify platform. Credits are
+      deducted for LLM calls, storage operations, and other platform
+      resources. The credit balance can go negative (overdraft) and
+      downstream hooks can block further usage when a threshold is breached.
+
+  - term: Commit
+    definition: >
+      A versioned snapshot of a Project or Context state, analogous to a
+      git commit. Commits allow you to save and later restore the set of
+      log entries associated with a project or context at a point in time.
+
+  - term: Rollback
+    definition: >
+      The act of restoring a Project or Context to a previously saved
+      Commit snapshot, discarding any changes made since that commit.
+
+  - term: Organization
+    definition: >
+      A multi-user account boundary within the Unify platform. Organizations
+      contain members, support invite-based onboarding, and allow shared
+      ownership of assistants and billing.
+
+  - term: BASE_URL
+    definition: >
+      The root URL of the Unify REST API. Defaults to
+      https://api.unify.ai/v0. Can be overridden via the ORCHESTRA_URL
+      environment variable for self-hosted deployments.
+
+  - term: Derived Logs
+    definition: >
+      Computed fields appended to existing log entries by running server-side
+      transformations (e.g. extracting a sub-field, scoring a response). Used
+      to enrich logs without re-running the original inference.
+
+  - term: Preseed
+    definition: >
+      The process of pre-populating an Assistant with initial conversations,
+      knowledge, or configuration before it is exposed to end users.

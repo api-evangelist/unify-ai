@@ -1,0 +1,45 @@
+{
+  "title": "Create a log entry for an LLM call",
+  "description": "Example POST /logs request body recording a single LLM completion with its prompt, response, model, provider, latency, and token cost.",
+  "request": {
+    "method": "POST",
+    "url": "https://api.unify.ai/v0/logs",
+    "headers": {
+      "Authorization": "Bearer <UNIFY_KEY>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "project": "my-chatbot",
+      "context": "eval/run-001",
+      "entries": {
+        "prompt": "Summarise the key points of the Unify platform in one paragraph.",
+        "response": "Unify is an LLM routing and model gateway platform...",
+        "model": "gpt-4o",
+        "provider": "openai",
+        "latency_ms": 842,
+        "input_tokens": 24,
+        "output_tokens": 87,
+        "cost_usd": 0.00034
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": 100423,
+      "ts": "2026-06-12T10:34:22Z",
+      "project": "my-chatbot",
+      "context": "eval/run-001",
+      "entries": {
+        "prompt": "Summarise the key points of the Unify platform in one paragraph.",
+        "response": "Unify is an LLM routing and model gateway platform...",
+        "model": "gpt-4o",
+        "provider": "openai",
+        "latency_ms": 842,
+        "input_tokens": 24,
+        "output_tokens": 87,
+        "cost_usd": 0.00034
+      }
+    }
+  }
+}
