@@ -13,7 +13,7 @@ description: >
   standardized datasets and switch providers without rewriting application code
   using the unified model@provider endpoint syntax.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/unify-ai/refs/heads/main/apis.yml
 created: '2026-06-12'
 modified: '2026-06-12'
@@ -42,7 +42,7 @@ apis:
       or optimizer strings for automatic routing based on quality, cost, and speed
       preferences. The API is OpenAI-compatible, supports streaming, caching,
       fallbacks, and structured logging.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://unify.ai
     baseURL: https://api.unify.ai/v0
     tags:
