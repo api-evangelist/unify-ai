@@ -61,9 +61,9 @@ apis:
         url: json-schema/unify-ai-log.json
       - type: JSONSchema
         url: json-schema/unify-ai-assistant.json
-      - type: Example
+      - type: Examples
         url: examples/unify-ai-create-log-example.json
-      - type: Example
+      - type: Examples
         url: examples/unify-ai-send-message-example.json
 common:
   - type: Website
