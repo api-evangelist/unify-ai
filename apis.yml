@@ -66,6 +66,14 @@ apis:
       - type: Examples
         url: examples/unify-ai-send-message-example.json
 common:
+  - type: TrustCenter
+    url: security/unify-ai-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/unify-ai-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/unify-ai-domain-security.yml
+  - type: Authentication
+    url: authentication/unify-ai-authentication.yml
   - type: Website
     url: https://unify.ai
   - type: Documentation
