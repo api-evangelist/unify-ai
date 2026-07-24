@@ -1,0 +1,369 @@
+openapi: 3.0.3
+info:
+  title: Unify Universal Agent Logs API
+  description: 'The Unify Universal API provides a unified REST interface for the Unify platform''s LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.
+
+    '
+  version: '0'
+  contact:
+    name: Unify
+    url: https://unify.ai
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://api.unify.ai/v0
+  description: Unify production API
+security:
+- bearerAuth: []
+tags:
+- name: Logs
+  description: Structured logging — create, query, derive, and manage log entries
+paths:
+  /logs:
+    get:
+      summary: Get logs
+      description: Retrieve log entries with optional filtering.
+      operationId: getLogs
+      tags:
+      - Logs
+      parameters:
+      - name: project
+        in: query
+        schema:
+          type: string
+        description: Filter by project name
+      - name: context
+        in: query
+        schema:
+          type: string
+        description: Filter by context path
+      - name: limit
+        in: query
+        schema:
+          type: integer
+        description: Maximum number of results to return
+      - name: offset
+        in: query
+        schema:
+          type: integer
+        description: Pagination offset
+      responses:
+        '200':
+          description: Log entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Log'
+    post:
+      summary: Create log entry
+      description: Create one or more new log entries.
+      operationId: createLog
+      tags:
+      - Logs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                project:
+                  type: string
+                context:
+                  type: string
+                entries:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '200':
+          description: Log entry created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Log'
+    put:
+      summary: Update log entries
+      description: Update existing log entries.
+      operationId: updateLogs
+      tags:
+      - Logs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Logs updated
+    delete:
+      summary: Delete log entries
+      description: Delete log entries matching the given filter.
+      operationId: deleteLogs
+      tags:
+      - Logs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  items:
+                    type: integer
+                  description: List of log IDs to delete
+      responses:
+        '200':
+          description: Logs deleted
+  /logs/fields:
+    get:
+      summary: List log fields
+      description: Get all field names present in the logs.
+      operationId: getLogFields
+      tags:
+      - Logs
+      parameters:
+      - name: project
+        in: query
+        schema:
+          type: string
+      - name: context
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of field names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+    post:
+      summary: Query log fields
+      description: Query fields from logs using a filter body.
+      operationId: queryLogFields
+      tags:
+      - Logs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Field values
+    delete:
+      summary: Delete log fields
+      description: Remove specific fields from log entries.
+      operationId: deleteLogFields
+      tags:
+      - Logs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fields:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Fields deleted
+  /logs/fields/rename_field:
+    patch:
+      summary: Rename a log field
+      description: Rename a field across all log entries in a project/context.
+      operationId: renameLogField
+      tags:
+      - Logs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                old_name:
+                  type: string
+                new_name:
+                  type: string
+              required:
+              - old_name
+              - new_name
+      responses:
+        '200':
+          description: Field renamed
+  /logs/metric/{metric}:
+    get:
+      summary: Get log metric
+      description: Retrieve a computed metric aggregated across log entries.
+      operationId: getLogMetric
+      tags:
+      - Logs
+      parameters:
+      - name: metric
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Metric name (e.g. mean, sum, count)
+      - name: field
+        in: query
+        schema:
+          type: string
+        description: Field to aggregate
+      - name: project
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Metric value
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metric:
+                    type: number
+  /logs/groups:
+    get:
+      summary: Get log groups
+      description: Retrieve grouped log entries.
+      operationId: getLogGroups
+      tags:
+      - Logs
+      parameters:
+      - name: group_by
+        in: query
+        schema:
+          type: string
+        description: Field to group by
+      - name: project
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Grouped log entries
+  /logs/derived:
+    post:
+      summary: Compute derived log fields
+      description: Compute derived fields from existing log entries.
+      operationId: computeDerivedLogs
+      tags:
+      - Logs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Derived fields computed
+  /logs/join:
+    post:
+      summary: Join logs
+      description: Join log entries from multiple contexts or projects.
+      operationId: joinLogs
+      tags:
+      - Logs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Joined log results
+  /logs/join_query:
+    post:
+      summary: Join query logs
+      description: Execute a join query across log data sources.
+      operationId: joinQueryLogs
+      tags:
+      - Logs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Join query results
+  /logs/{log_id}/fields/{key}/atomic:
+    patch:
+      summary: Atomic field update
+      description: Atomically update a single field in a specific log entry.
+      operationId: atomicUpdateLogField
+      tags:
+      - Logs
+      parameters:
+      - name: log_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Log entry identifier
+      - name: key
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Field key to update
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  description: New field value
+      responses:
+        '200':
+          description: Field updated atomically
+components:
+  schemas:
+    Log:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Log entry identifier
+        ts:
+          type: string
+          format: date-time
+          description: Timestamp of the log entry
+        project:
+          type: string
+          description: Project this log belongs to
+        context:
+          type: string
+          nullable: true
+          description: Context path within the project
+        entries:
+          type: object
+          additionalProperties: true
+          description: Arbitrary key-value log fields
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key from the Unify console (UNIFY_KEY environment variable)

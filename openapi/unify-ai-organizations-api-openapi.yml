@@ -1,0 +1,94 @@
+openapi: 3.0.3
+info:
+  title: Unify Universal Agent Organizations API
+  description: 'The Unify Universal API provides a unified REST interface for the Unify platform''s LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.
+
+    '
+  version: '0'
+  contact:
+    name: Unify
+    url: https://unify.ai
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://api.unify.ai/v0
+  description: Unify production API
+security:
+- bearerAuth: []
+tags:
+- name: Organizations
+  description: Multi-user organization management
+paths:
+  /organizations/{organization_id}/invites:
+    post:
+      summary: Create organization invite
+      description: Invite a user to join an organization.
+      operationId: createOrganizationInvite
+      tags:
+      - Organizations
+      parameters:
+      - name: organization_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Organization identifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email address to invite
+                role:
+                  type: string
+                  description: Role to assign
+      responses:
+        '200':
+          description: Invite sent
+  /organizations/{organization_id}/members:
+    get:
+      summary: List organization members
+      description: List all members of an organization.
+      operationId: listOrganizationMembers
+      tags:
+      - Organizations
+      parameters:
+      - name: organization_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Organization identifier
+      responses:
+        '200':
+          description: List of organization members
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserBasicInfo'
+components:
+  schemas:
+    UserBasicInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User identifier
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key from the Unify console (UNIFY_KEY environment variable)

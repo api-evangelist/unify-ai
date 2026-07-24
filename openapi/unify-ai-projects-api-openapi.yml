@@ -1,0 +1,211 @@
+openapi: 3.0.3
+info:
+  title: Unify Universal Agent Projects API
+  description: 'The Unify Universal API provides a unified REST interface for the Unify platform''s LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.
+
+    '
+  version: '0'
+  contact:
+    name: Unify
+    url: https://unify.ai
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://api.unify.ai/v0
+  description: Unify production API
+security:
+- bearerAuth: []
+tags:
+- name: Projects
+  description: Create and manage projects for organizing logs and contexts
+paths:
+  /project:
+    post:
+      summary: Create a project
+      description: Create a new project in the authenticated user's workspace.
+      operationId: createProject
+      tags:
+      - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Project name
+                overwrite:
+                  type: boolean
+                  default: false
+                  description: If true, overwrite an existing project of the same name
+              required:
+              - name
+      responses:
+        '200':
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '409':
+          description: Project already exists
+  /projects:
+    get:
+      summary: List projects
+      description: List all projects visible to the authenticated user.
+      operationId: listProjects
+      tags:
+      - Projects
+      responses:
+        '200':
+          description: List of projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+  /project/{name}:
+    delete:
+      summary: Delete a project
+      description: Permanently delete a project by name.
+      operationId: deleteProject
+      tags:
+      - Projects
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project name
+      responses:
+        '200':
+          description: Project deleted
+        '404':
+          description: Project not found
+  /project/{name}/contexts:
+    delete:
+      summary: Delete all project contexts
+      description: Delete all contexts belonging to a project.
+      operationId: deleteProjectContexts
+      tags:
+      - Projects
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project name
+      responses:
+        '200':
+          description: All contexts deleted
+  /project/{name}/commit:
+    post:
+      summary: Commit a project snapshot
+      description: Save a versioned snapshot (commit) of the project state.
+      operationId: commitProject
+      tags:
+      - Projects
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project name
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: Commit message
+      responses:
+        '200':
+          description: Commit created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Commit'
+  /project/{name}/rollback:
+    post:
+      summary: Rollback a project
+      description: Restore the project to a previous commit snapshot.
+      operationId: rollbackProject
+      tags:
+      - Projects
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project name
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                commit_id:
+                  type: string
+                  description: Commit ID to roll back to
+      responses:
+        '200':
+          description: Project rolled back
+  /project/{name}/commits:
+    get:
+      summary: Get project commits
+      description: Retrieve the list of commits for a project.
+      operationId: getProjectCommits
+      tags:
+      - Projects
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project name
+      responses:
+        '200':
+          description: List of commits
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Commit'
+components:
+  schemas:
+    Commit:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Commit identifier
+        ts:
+          type: string
+          format: date-time
+        message:
+          type: string
+    Project:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Unique project name
+      required:
+      - name
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key from the Unify console (UNIFY_KEY environment variable)

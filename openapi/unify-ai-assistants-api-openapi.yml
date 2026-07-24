@@ -1,0 +1,194 @@
+openapi: 3.0.3
+info:
+  title: Unify Universal Agent Assistants API
+  description: 'The Unify Universal API provides a unified REST interface for the Unify platform''s LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.
+
+    '
+  version: '0'
+  contact:
+    name: Unify
+    url: https://unify.ai
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://api.unify.ai/v0
+  description: Unify production API
+security:
+- bearerAuth: []
+tags:
+- name: Assistants
+  description: Create and manage AI assistants within your workspace
+paths:
+  /assistant:
+    post:
+      summary: Create an assistant
+      description: Create a new assistant in the caller's active workspace.
+      operationId: createAssistant
+      tags:
+      - Assistants
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssistantCreate'
+      responses:
+        '200':
+          description: Assistant created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assistant'
+    get:
+      summary: List assistants
+      description: List assistants visible to the caller.
+      operationId: listAssistants
+      tags:
+      - Assistants
+      parameters:
+      - name: phone
+        in: query
+        schema:
+          type: string
+        description: Filter by phone number
+      - name: email
+        in: query
+        schema:
+          type: string
+          format: email
+        description: Filter by email address
+      - name: agent_id
+        in: query
+        schema:
+          type: integer
+        description: Filter by assistant identifier
+      - name: list_all_org
+        in: query
+        schema:
+          type: boolean
+          default: false
+        description: List all assistants in the organization
+      responses:
+        '200':
+          description: List of assistants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Assistant'
+  /assistant/{assistant_id}:
+    delete:
+      summary: Delete an assistant
+      description: Delete an assistant that the caller can manage.
+      operationId: deleteAssistant
+      tags:
+      - Assistants
+      parameters:
+      - name: assistant_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Assistant identifier
+      responses:
+        '200':
+          description: Assistant deleted
+        '404':
+          description: Assistant not found
+  /assistant/{assistant_id}/config:
+    patch:
+      summary: Update assistant config
+      description: Update an assistant's editable configuration fields.
+      operationId: updateAssistantConfig
+      tags:
+      - Assistants
+      parameters:
+      - name: assistant_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Assistant identifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              description: Configuration fields to update
+      responses:
+        '200':
+          description: Assistant config updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assistant'
+  /assistant/{target_assistant_id}/preseed:
+    post:
+      summary: Preseed an assistant
+      description: Pre-populate an assistant with initial data or configuration.
+      operationId: preseedAssistant
+      tags:
+      - Assistants
+      parameters:
+      - name: target_assistant_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Target assistant identifier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Assistant preseeded
+components:
+  schemas:
+    Assistant:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique assistant identifier
+        first_name:
+          type: string
+          description: Assistant first name
+        surname:
+          type: string
+          nullable: true
+          description: Assistant surname
+        config:
+          type: object
+          additionalProperties: true
+          description: Assistant configuration fields
+      required:
+      - id
+      - first_name
+    AssistantCreate:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: The assistant's first name
+        surname:
+          type: string
+          nullable: true
+          description: The assistant's surname
+        config:
+          type: object
+          additionalProperties: true
+          description: Additional assistant creation fields
+      required:
+      - first_name
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key from the Unify console (UNIFY_KEY environment variable)

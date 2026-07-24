@@ -1,0 +1,255 @@
+openapi: 3.0.3
+info:
+  title: Unify Universal Agent Spaces API
+  description: 'The Unify Universal API provides a unified REST interface for the Unify platform''s LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.
+
+    '
+  version: '0'
+  contact:
+    name: Unify
+    url: https://unify.ai
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://api.unify.ai/v0
+  description: Unify production API
+security:
+- bearerAuth: []
+tags:
+- name: Spaces
+  description: Collaboration spaces for grouping assistants
+paths:
+  /spaces:
+    post:
+      summary: Create a space
+      description: Create a new collaboration space.
+      operationId: createSpace
+      tags:
+      - Spaces
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Space name
+                config:
+                  type: object
+                  additionalProperties: true
+              required:
+              - name
+      responses:
+        '200':
+          description: Space created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Space'
+    get:
+      summary: List spaces
+      description: List all spaces visible to the authenticated user.
+      operationId: listSpaces
+      tags:
+      - Spaces
+      parameters:
+      - name: assistant_id
+        in: query
+        schema:
+          type: integer
+        description: Filter spaces by assistant membership
+      responses:
+        '200':
+          description: List of spaces
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Space'
+  /spaces/{space_id}:
+    patch:
+      summary: Update a space
+      description: Update the configuration of an existing space.
+      operationId: updateSpace
+      tags:
+      - Spaces
+      parameters:
+      - name: space_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Space identifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Space updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Space'
+    delete:
+      summary: Delete a space
+      description: Delete a space by its identifier.
+      operationId: deleteSpace
+      tags:
+      - Spaces
+      parameters:
+      - name: space_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Space identifier
+      responses:
+        '200':
+          description: Space deleted
+        '404':
+          description: Space not found
+  /spaces/{space_id}/members:
+    post:
+      summary: Add space member
+      description: Add an assistant as a member of a space.
+      operationId: addSpaceMember
+      tags:
+      - Spaces
+      parameters:
+      - name: space_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Space identifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                assistant_id:
+                  type: integer
+                  description: Assistant to add
+              required:
+              - assistant_id
+      responses:
+        '200':
+          description: Member added
+    get:
+      summary: List space members
+      description: List all assistants who are members of a space.
+      operationId: listSpaceMembers
+      tags:
+      - Spaces
+      parameters:
+      - name: space_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Space identifier
+      responses:
+        '200':
+          description: List of space members
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Assistant'
+  /spaces/{space_id}/members/{assistant_id}:
+    delete:
+      summary: Remove space member
+      description: Remove an assistant from a space.
+      operationId: removeSpaceMember
+      tags:
+      - Spaces
+      parameters:
+      - name: space_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Space identifier
+      - name: assistant_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Assistant identifier
+      responses:
+        '200':
+          description: Member removed
+  /assistants/{assistant_id}/spaces:
+    get:
+      summary: List spaces for an assistant
+      description: List all spaces an assistant is a member of.
+      operationId: listSpacesForAssistant
+      tags:
+      - Spaces
+      parameters:
+      - name: assistant_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Assistant identifier
+      responses:
+        '200':
+          description: List of spaces
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Space'
+components:
+  schemas:
+    Space:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Space identifier
+        name:
+          type: string
+          description: Space name
+        config:
+          type: object
+          additionalProperties: true
+          description: Space configuration
+    Assistant:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique assistant identifier
+        first_name:
+          type: string
+          description: Assistant first name
+        surname:
+          type: string
+          nullable: true
+          description: Assistant surname
+        config:
+          type: object
+          additionalProperties: true
+          description: Assistant configuration fields
+      required:
+      - id
+      - first_name
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key from the Unify console (UNIFY_KEY environment variable)

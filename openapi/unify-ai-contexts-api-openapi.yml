@@ -1,0 +1,301 @@
+openapi: 3.0.3
+info:
+  title: Unify Universal Agent Contexts API
+  description: 'The Unify Universal API provides a unified REST interface for the Unify platform''s LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.
+
+    '
+  version: '0'
+  contact:
+    name: Unify
+    url: https://unify.ai
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://api.unify.ai/v0
+  description: Unify production API
+security:
+- bearerAuth: []
+tags:
+- name: Contexts
+  description: Named sub-collections of logs within a project
+paths:
+  /project/{project}/contexts:
+    post:
+      summary: Create a context
+      description: Create a new context within a project.
+      operationId: createContext
+      tags:
+      - Contexts
+      parameters:
+      - name: project
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Context name
+              required:
+              - name
+      responses:
+        '200':
+          description: Context created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Context'
+    get:
+      summary: List contexts
+      description: List all contexts within a project.
+      operationId: listContexts
+      tags:
+      - Contexts
+      parameters:
+      - name: project
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project name
+      responses:
+        '200':
+          description: List of contexts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Context'
+  /project/{project}/contexts/{name}:
+    get:
+      summary: Get a context
+      description: Retrieve a specific context by name within a project.
+      operationId: getContext
+      tags:
+      - Contexts
+      parameters:
+      - name: project
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project name
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Context name
+      responses:
+        '200':
+          description: Context record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Context'
+    delete:
+      summary: Delete a context
+      description: Delete a specific context within a project.
+      operationId: deleteContext
+      tags:
+      - Contexts
+      parameters:
+      - name: project
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project name
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Context name
+      responses:
+        '200':
+          description: Context deleted
+  /project/{project}/contexts/{name}/rename:
+    patch:
+      summary: Rename a context
+      description: Rename an existing context within a project.
+      operationId: renameContext
+      tags:
+      - Contexts
+      parameters:
+      - name: project
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project name
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Current context name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                new_name:
+                  type: string
+                  description: New context name
+              required:
+              - new_name
+      responses:
+        '200':
+          description: Context renamed
+  /project/{project}/contexts/add_logs:
+    post:
+      summary: Add logs to context
+      description: Add existing log entries to a context.
+      operationId: addLogsToContext
+      tags:
+      - Contexts
+      parameters:
+      - name: project
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  type: string
+                  description: Target context name
+                log_ids:
+                  type: array
+                  items:
+                    type: integer
+                  description: Log IDs to add
+              required:
+              - context
+              - log_ids
+      responses:
+        '200':
+          description: Logs added to context
+  /project/{project}/contexts/{name}/commit:
+    post:
+      summary: Commit a context snapshot
+      description: Save a versioned snapshot of a context.
+      operationId: commitContext
+      tags:
+      - Contexts
+      parameters:
+      - name: project
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project name
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Context name
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: Commit message
+      responses:
+        '200':
+          description: Context committed
+  /project/{project}/contexts/{name}/rollback:
+    post:
+      summary: Rollback a context
+      description: Restore a context to a previous committed state.
+      operationId: rollbackContext
+      tags:
+      - Contexts
+      parameters:
+      - name: project
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project name
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Context name
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                commit_id:
+                  type: string
+                  description: Commit ID to roll back to
+      responses:
+        '200':
+          description: Context rolled back
+components:
+  schemas:
+    Log:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Log entry identifier
+        ts:
+          type: string
+          format: date-time
+          description: Timestamp of the log entry
+        project:
+          type: string
+          description: Project this log belongs to
+        context:
+          type: string
+          nullable: true
+          description: Context path within the project
+        entries:
+          type: object
+          additionalProperties: true
+          description: Arbitrary key-value log fields
+    Context:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Context name
+        project:
+          type: string
+          description: Parent project name
+        logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Log'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key from the Unify console (UNIFY_KEY environment variable)

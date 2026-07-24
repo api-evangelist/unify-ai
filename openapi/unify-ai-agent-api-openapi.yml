@@ -1,0 +1,108 @@
+openapi: 3.0.3
+info:
+  title: Unify Universal Agent API
+  description: 'The Unify Universal API provides a unified REST interface for the Unify platform''s LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.
+
+    '
+  version: '0'
+  contact:
+    name: Unify
+    url: https://unify.ai
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://api.unify.ai/v0
+  description: Unify production API
+security:
+- bearerAuth: []
+tags:
+- name: Agent
+  description: Send messages to and retrieve messages from assistants
+paths:
+  /messages:
+    post:
+      summary: Send a message
+      description: Send a message to an assistant and receive a response.
+      operationId: sendMessage
+      tags:
+      - Agent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                assistant_id:
+                  type: integer
+                  description: Target assistant identifier
+                content:
+                  type: string
+                  description: Message content
+                role:
+                  type: string
+                  enum:
+                  - user
+                  - system
+                  default: user
+              required:
+              - assistant_id
+              - content
+      responses:
+        '200':
+          description: Message sent and response received
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '401':
+          description: Unauthorized
+  /messages/{message_id}:
+    get:
+      summary: Get a message
+      description: Retrieve a specific message by its identifier.
+      operationId: getMessage
+      tags:
+      - Agent
+      parameters:
+      - name: message_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Message identifier
+      responses:
+        '200':
+          description: Message record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '404':
+          description: Message not found
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Message identifier
+        role:
+          type: string
+          enum:
+          - user
+          - assistant
+          - system
+        content:
+          type: string
+          description: Message content
+        ts:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key from the Unify console (UNIFY_KEY environment variable)

@@ -1,0 +1,135 @@
+openapi: 3.0.3
+info:
+  title: Unify Universal Agent Platform API
+  description: 'The Unify Universal API provides a unified REST interface for the Unify platform''s LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.
+
+    '
+  version: '0'
+  contact:
+    name: Unify
+    url: https://unify.ai
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://api.unify.ai/v0
+  description: Unify production API
+security:
+- bearerAuth: []
+tags:
+- name: Platform
+  description: Platform-level utilities including credits and user info
+paths:
+  /credits/deduct:
+    post:
+      summary: Deduct credits
+      description: 'Deduct credits from the authenticated user''s account. The amount must be positive. The balance is allowed to go negative (overdraft) so that downstream spending-limit hooks can detect and block further usage.
+
+        '
+      operationId: deductCredits
+      tags:
+      - Platform
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreditDeductRequest'
+      responses:
+        '200':
+          description: Credits deducted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditDeductResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /user/basic-info:
+    get:
+      summary: Get user basic info
+      description: Get basic information for the authenticated user.
+      operationId: getUserBasicInfo
+      tags:
+      - Platform
+      responses:
+        '200':
+          description: User information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserBasicInfo'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    UserBasicInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User identifier
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: Error message
+    CreditDeductResponse:
+      type: object
+      properties:
+        previous_credits:
+          type: number
+          description: Credits before deduction
+        deducted:
+          type: number
+          description: Amount deducted
+        current_credits:
+          type: number
+          description: Credits after deduction (may be negative)
+    CreditDeductRequest:
+      type: object
+      properties:
+        amount:
+          type: number
+          description: Amount of credits to deduct (must be positive)
+        category:
+          type: string
+          nullable: true
+          description: Ledger category (e.g. llm, media, setup)
+        assistant_id:
+          type: integer
+          nullable: true
+          description: Assistant that incurred the cost
+        user_id:
+          type: string
+          nullable: true
+          description: User who triggered the cost
+        organization_id:
+          type: integer
+          nullable: true
+          description: Organization that owns the billing account
+        description:
+          type: string
+          nullable: true
+          description: Human-readable description of the charge
+        detail:
+          type: object
+          nullable: true
+          additionalProperties: true
+          description: Arbitrary metadata dict (model, tokens, etc.)
+      required:
+      - amount
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key from the Unify console (UNIFY_KEY environment variable)
