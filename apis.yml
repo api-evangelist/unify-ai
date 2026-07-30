@@ -13,7 +13,20 @@ description: >
   standardized datasets and switch providers without rewriting application code
   using the unified model@provider endpoint syntax.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/unify-ai.png
 url: https://raw.githubusercontent.com/api-evangelist/unify-ai/refs/heads/main/apis.yml
 created: '2026-06-12'
 modified: '2026-06-12'
@@ -33,39 +46,169 @@ tags:
   - AI Infrastructure
   - Machine Learning
 apis:
-  - name: Unify Universal API
-    description: >
-      The Unify Universal API provides a single REST endpoint with Bearer token
-      authentication for routing LLM requests to 100+ model providers including
-      OpenAI, Anthropic, Mistral, Together AI, Replicate, Groq, DeepSeek, Vertex
-      AI, and more. Requests use the model@provider syntax for explicit routing
-      or optimizer strings for automatic routing based on quality, cost, and speed
-      preferences. The API is OpenAI-compatible, supports streaming, caching,
-      fallbacks, and structured logging.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://unify.ai
-    baseURL: https://api.unify.ai/v0
-    tags:
-      - LLM Routing
-      - Model Gateway
-      - AI
-      - REST API
-    properties:
-      - type: Documentation
-        url: https://docs.unify.ai
-      - type: OpenAPI
-        url: https://docs.unify.ai/api-reference
-      - type: OpenAPI
-        url: openapi/unify-ai-universal-api-openapi.yml
-      - type: JSONSchema
-        url: json-schema/unify-ai-log.json
-      - type: JSONSchema
-        url: json-schema/unify-ai-assistant.json
-      - type: Examples
-        url: examples/unify-ai-create-log-example.json
-      - type: Examples
-        url: examples/unify-ai-send-message-example.json
+- aid: unify-ai:unify-ai-agent-api
+  name: Unify Agent API
+  description: Send messages to and retrieve messages from assistants
+  humanURL: https://unify.ai
+  baseURL: https://api.unify.ai/v0
+  tags:
+  - Agent
+  properties:
+  - type: OpenAPI
+    url: openapi/unify-ai-agent-api-openapi.yml
+  - type: Documentation
+    url: https://docs.unify.ai
+  - type: JSONSchema
+    url: json-schema/unify-ai-log.json
+  - type: JSONSchema
+    url: json-schema/unify-ai-assistant.json
+  - type: Examples
+    url: examples/unify-ai-create-log-example.json
+  - type: Examples
+    url: examples/unify-ai-send-message-example.json
+- aid: unify-ai:unify-ai-assistants-api
+  name: Unify Assistants API
+  description: Create and manage AI assistants within your workspace
+  humanURL: https://unify.ai
+  baseURL: https://api.unify.ai/v0
+  tags:
+  - Assistants
+  properties:
+  - type: OpenAPI
+    url: openapi/unify-ai-assistants-api-openapi.yml
+  - type: Documentation
+    url: https://docs.unify.ai
+  - type: JSONSchema
+    url: json-schema/unify-ai-log.json
+  - type: JSONSchema
+    url: json-schema/unify-ai-assistant.json
+  - type: Examples
+    url: examples/unify-ai-create-log-example.json
+  - type: Examples
+    url: examples/unify-ai-send-message-example.json
+- aid: unify-ai:unify-ai-contexts-api
+  name: Unify Contexts API
+  description: Named sub-collections of logs within a project
+  humanURL: https://unify.ai
+  baseURL: https://api.unify.ai/v0
+  tags:
+  - Contexts
+  properties:
+  - type: OpenAPI
+    url: openapi/unify-ai-contexts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.unify.ai
+  - type: JSONSchema
+    url: json-schema/unify-ai-log.json
+  - type: JSONSchema
+    url: json-schema/unify-ai-assistant.json
+  - type: Examples
+    url: examples/unify-ai-create-log-example.json
+  - type: Examples
+    url: examples/unify-ai-send-message-example.json
+- aid: unify-ai:unify-ai-logs-api
+  name: Unify Logs API
+  description: Structured logging — create, query, derive, and manage log entries
+  humanURL: https://unify.ai
+  baseURL: https://api.unify.ai/v0
+  tags:
+  - Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/unify-ai-logs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.unify.ai
+  - type: JSONSchema
+    url: json-schema/unify-ai-log.json
+  - type: JSONSchema
+    url: json-schema/unify-ai-assistant.json
+  - type: Examples
+    url: examples/unify-ai-create-log-example.json
+  - type: Examples
+    url: examples/unify-ai-send-message-example.json
+- aid: unify-ai:unify-ai-organizations-api
+  name: Unify Organizations API
+  description: Multi-user organization management
+  humanURL: https://unify.ai
+  baseURL: https://api.unify.ai/v0
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/unify-ai-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.unify.ai
+  - type: JSONSchema
+    url: json-schema/unify-ai-log.json
+  - type: JSONSchema
+    url: json-schema/unify-ai-assistant.json
+  - type: Examples
+    url: examples/unify-ai-create-log-example.json
+  - type: Examples
+    url: examples/unify-ai-send-message-example.json
+- aid: unify-ai:unify-ai-platform-api
+  name: Unify Platform API
+  description: Platform-level utilities including credits and user info
+  humanURL: https://unify.ai
+  baseURL: https://api.unify.ai/v0
+  tags:
+  - Platform
+  properties:
+  - type: OpenAPI
+    url: openapi/unify-ai-platform-api-openapi.yml
+  - type: Documentation
+    url: https://docs.unify.ai
+  - type: JSONSchema
+    url: json-schema/unify-ai-log.json
+  - type: JSONSchema
+    url: json-schema/unify-ai-assistant.json
+  - type: Examples
+    url: examples/unify-ai-create-log-example.json
+  - type: Examples
+    url: examples/unify-ai-send-message-example.json
+- aid: unify-ai:unify-ai-projects-api
+  name: Unify Projects API
+  description: Create and manage projects for organizing logs and contexts
+  humanURL: https://unify.ai
+  baseURL: https://api.unify.ai/v0
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/unify-ai-projects-api-openapi.yml
+  - type: Documentation
+    url: https://docs.unify.ai
+  - type: JSONSchema
+    url: json-schema/unify-ai-log.json
+  - type: JSONSchema
+    url: json-schema/unify-ai-assistant.json
+  - type: Examples
+    url: examples/unify-ai-create-log-example.json
+  - type: Examples
+    url: examples/unify-ai-send-message-example.json
+- aid: unify-ai:unify-ai-spaces-api
+  name: Unify Spaces API
+  description: Collaboration spaces for grouping assistants
+  humanURL: https://unify.ai
+  baseURL: https://api.unify.ai/v0
+  tags:
+  - Spaces
+  properties:
+  - type: OpenAPI
+    url: openapi/unify-ai-spaces-api-openapi.yml
+  - type: Documentation
+    url: https://docs.unify.ai
+  - type: JSONSchema
+    url: json-schema/unify-ai-log.json
+  - type: JSONSchema
+    url: json-schema/unify-ai-assistant.json
+  - type: Examples
+    url: examples/unify-ai-create-log-example.json
+  - type: Examples
+    url: examples/unify-ai-send-message-example.json
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/unify/overview
   - type: AgenticAccess
     url: agentic-access/unify-ai-agentic-access.yml
   - type: TrustCenter
