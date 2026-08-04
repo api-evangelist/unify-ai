@@ -1,0 +1,1496 @@
+openapi: 3.0.3
+info:
+  title: Unify Universal API
+  description: >
+    The Unify Universal API provides a unified REST interface for the Unify
+    platform's LLM routing, persistence, logging, assistant management, project
+    management, spaces, context, and organization features. The API base URL is
+    https://api.unify.ai/v0 and all endpoints require Bearer token
+    authentication via the UNIFY_KEY environment variable.
+  version: "0"
+  contact:
+    name: Unify
+    url: https://unify.ai
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://api.unify.ai/v0
+    description: Unify production API
+
+security:
+  - bearerAuth: []
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key from the Unify console (UNIFY_KEY environment variable)
+
+  schemas:
+    Assistant:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique assistant identifier
+        first_name:
+          type: string
+          description: Assistant first name
+        surname:
+          type: string
+          nullable: true
+          description: Assistant surname
+        config:
+          type: object
+          additionalProperties: true
+          description: Assistant configuration fields
+      required:
+        - id
+        - first_name
+
+    AssistantCreate:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: The assistant's first name
+        surname:
+          type: string
+          nullable: true
+          description: The assistant's surname
+        config:
+          type: object
+          additionalProperties: true
+          description: Additional assistant creation fields
+      required:
+        - first_name
+
+    Log:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Log entry identifier
+        ts:
+          type: string
+          format: date-time
+          description: Timestamp of the log entry
+        project:
+          type: string
+          description: Project this log belongs to
+        context:
+          type: string
+          nullable: true
+          description: Context path within the project
+        entries:
+          type: object
+          additionalProperties: true
+          description: Arbitrary key-value log fields
+
+    Project:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Unique project name
+      required:
+        - name
+
+    Space:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Space identifier
+        name:
+          type: string
+          description: Space name
+        config:
+          type: object
+          additionalProperties: true
+          description: Space configuration
+
+    Context:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Context name
+        project:
+          type: string
+          description: Parent project name
+        logs:
+          type: array
+          items:
+            $ref: "#/components/schemas/Log"
+
+    Message:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Message identifier
+        role:
+          type: string
+          enum: [user, assistant, system]
+        content:
+          type: string
+          description: Message content
+        ts:
+          type: string
+          format: date-time
+
+    CreditDeductRequest:
+      type: object
+      properties:
+        amount:
+          type: number
+          description: Amount of credits to deduct (must be positive)
+        category:
+          type: string
+          nullable: true
+          description: Ledger category (e.g. llm, media, setup)
+        assistant_id:
+          type: integer
+          nullable: true
+          description: Assistant that incurred the cost
+        user_id:
+          type: string
+          nullable: true
+          description: User who triggered the cost
+        organization_id:
+          type: integer
+          nullable: true
+          description: Organization that owns the billing account
+        description:
+          type: string
+          nullable: true
+          description: Human-readable description of the charge
+        detail:
+          type: object
+          nullable: true
+          additionalProperties: true
+          description: Arbitrary metadata dict (model, tokens, etc.)
+      required:
+        - amount
+
+    CreditDeductResponse:
+      type: object
+      properties:
+        previous_credits:
+          type: number
+          description: Credits before deduction
+        deducted:
+          type: number
+          description: Amount deducted
+        current_credits:
+          type: number
+          description: Credits after deduction (may be negative)
+
+    UserBasicInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User identifier
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+
+    Commit:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Commit identifier
+        ts:
+          type: string
+          format: date-time
+        message:
+          type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: Error message
+
+paths:
+  # Platform
+  /credits/deduct:
+    post:
+      summary: Deduct credits
+      description: >
+        Deduct credits from the authenticated user's account. The amount must
+        be positive. The balance is allowed to go negative (overdraft) so that
+        downstream spending-limit hooks can detect and block further usage.
+      operationId: deductCredits
+      tags:
+        - Platform
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreditDeductRequest"
+      responses:
+        "200":
+          description: Credits deducted successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreditDeductResponse"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /user/basic-info:
+    get:
+      summary: Get user basic info
+      description: Get basic information for the authenticated user.
+      operationId: getUserBasicInfo
+      tags:
+        - Platform
+      responses:
+        "200":
+          description: User information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserBasicInfo"
+        "401":
+          description: Unauthorized
+
+  # Messages / Agent
+  /messages:
+    post:
+      summary: Send a message
+      description: Send a message to an assistant and receive a response.
+      operationId: sendMessage
+      tags:
+        - Agent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                assistant_id:
+                  type: integer
+                  description: Target assistant identifier
+                content:
+                  type: string
+                  description: Message content
+                role:
+                  type: string
+                  enum: [user, system]
+                  default: user
+              required:
+                - assistant_id
+                - content
+      responses:
+        "200":
+          description: Message sent and response received
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Message"
+        "401":
+          description: Unauthorized
+
+  /messages/{message_id}:
+    get:
+      summary: Get a message
+      description: Retrieve a specific message by its identifier.
+      operationId: getMessage
+      tags:
+        - Agent
+      parameters:
+        - name: message_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Message identifier
+      responses:
+        "200":
+          description: Message record
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Message"
+        "404":
+          description: Message not found
+
+  # Projects
+  /project:
+    post:
+      summary: Create a project
+      description: Create a new project in the authenticated user's workspace.
+      operationId: createProject
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Project name
+                overwrite:
+                  type: boolean
+                  default: false
+                  description: If true, overwrite an existing project of the same name
+              required:
+                - name
+      responses:
+        "200":
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+        "409":
+          description: Project already exists
+
+  /projects:
+    get:
+      summary: List projects
+      description: List all projects visible to the authenticated user.
+      operationId: listProjects
+      tags:
+        - Projects
+      responses:
+        "200":
+          description: List of projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Project"
+
+  /project/{name}:
+    delete:
+      summary: Delete a project
+      description: Permanently delete a project by name.
+      operationId: deleteProject
+      tags:
+        - Projects
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project name
+      responses:
+        "200":
+          description: Project deleted
+        "404":
+          description: Project not found
+
+  /project/{name}/contexts:
+    delete:
+      summary: Delete all project contexts
+      description: Delete all contexts belonging to a project.
+      operationId: deleteProjectContexts
+      tags:
+        - Projects
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project name
+      responses:
+        "200":
+          description: All contexts deleted
+
+  /project/{name}/commit:
+    post:
+      summary: Commit a project snapshot
+      description: Save a versioned snapshot (commit) of the project state.
+      operationId: commitProject
+      tags:
+        - Projects
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project name
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: Commit message
+      responses:
+        "200":
+          description: Commit created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Commit"
+
+  /project/{name}/rollback:
+    post:
+      summary: Rollback a project
+      description: Restore the project to a previous commit snapshot.
+      operationId: rollbackProject
+      tags:
+        - Projects
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project name
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                commit_id:
+                  type: string
+                  description: Commit ID to roll back to
+      responses:
+        "200":
+          description: Project rolled back
+
+  /project/{name}/commits:
+    get:
+      summary: Get project commits
+      description: Retrieve the list of commits for a project.
+      operationId: getProjectCommits
+      tags:
+        - Projects
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project name
+      responses:
+        "200":
+          description: List of commits
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Commit"
+
+  # Logs
+  /logs:
+    get:
+      summary: Get logs
+      description: Retrieve log entries with optional filtering.
+      operationId: getLogs
+      tags:
+        - Logs
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+          description: Filter by project name
+        - name: context
+          in: query
+          schema:
+            type: string
+          description: Filter by context path
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: Maximum number of results to return
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          description: Pagination offset
+      responses:
+        "200":
+          description: Log entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Log"
+
+    post:
+      summary: Create log entry
+      description: Create one or more new log entries.
+      operationId: createLog
+      tags:
+        - Logs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                project:
+                  type: string
+                context:
+                  type: string
+                entries:
+                  type: object
+                  additionalProperties: true
+      responses:
+        "200":
+          description: Log entry created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Log"
+
+    put:
+      summary: Update log entries
+      description: Update existing log entries.
+      operationId: updateLogs
+      tags:
+        - Logs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Logs updated
+
+    delete:
+      summary: Delete log entries
+      description: Delete log entries matching the given filter.
+      operationId: deleteLogs
+      tags:
+        - Logs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  items:
+                    type: integer
+                  description: List of log IDs to delete
+      responses:
+        "200":
+          description: Logs deleted
+
+  /logs/fields:
+    get:
+      summary: List log fields
+      description: Get all field names present in the logs.
+      operationId: getLogFields
+      tags:
+        - Logs
+      parameters:
+        - name: project
+          in: query
+          schema:
+            type: string
+        - name: context
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of field names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+
+    post:
+      summary: Query log fields
+      description: Query fields from logs using a filter body.
+      operationId: queryLogFields
+      tags:
+        - Logs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Field values
+
+    delete:
+      summary: Delete log fields
+      description: Remove specific fields from log entries.
+      operationId: deleteLogFields
+      tags:
+        - Logs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fields:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "200":
+          description: Fields deleted
+
+  /logs/fields/rename_field:
+    patch:
+      summary: Rename a log field
+      description: Rename a field across all log entries in a project/context.
+      operationId: renameLogField
+      tags:
+        - Logs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                old_name:
+                  type: string
+                new_name:
+                  type: string
+              required:
+                - old_name
+                - new_name
+      responses:
+        "200":
+          description: Field renamed
+
+  /logs/metric/{metric}:
+    get:
+      summary: Get log metric
+      description: Retrieve a computed metric aggregated across log entries.
+      operationId: getLogMetric
+      tags:
+        - Logs
+      parameters:
+        - name: metric
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Metric name (e.g. mean, sum, count)
+        - name: field
+          in: query
+          schema:
+            type: string
+          description: Field to aggregate
+        - name: project
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Metric value
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metric:
+                    type: number
+
+  /logs/groups:
+    get:
+      summary: Get log groups
+      description: Retrieve grouped log entries.
+      operationId: getLogGroups
+      tags:
+        - Logs
+      parameters:
+        - name: group_by
+          in: query
+          schema:
+            type: string
+          description: Field to group by
+        - name: project
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Grouped log entries
+
+  /logs/derived:
+    post:
+      summary: Compute derived log fields
+      description: Compute derived fields from existing log entries.
+      operationId: computeDerivedLogs
+      tags:
+        - Logs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Derived fields computed
+
+  /logs/join:
+    post:
+      summary: Join logs
+      description: Join log entries from multiple contexts or projects.
+      operationId: joinLogs
+      tags:
+        - Logs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Joined log results
+
+  /logs/join_query:
+    post:
+      summary: Join query logs
+      description: Execute a join query across log data sources.
+      operationId: joinQueryLogs
+      tags:
+        - Logs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Join query results
+
+  /logs/{log_id}/fields/{key}/atomic:
+    patch:
+      summary: Atomic field update
+      description: Atomically update a single field in a specific log entry.
+      operationId: atomicUpdateLogField
+      tags:
+        - Logs
+      parameters:
+        - name: log_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Log entry identifier
+        - name: key
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Field key to update
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  description: New field value
+      responses:
+        "200":
+          description: Field updated atomically
+
+  # Assistants
+  /assistant:
+    post:
+      summary: Create an assistant
+      description: Create a new assistant in the caller's active workspace.
+      operationId: createAssistant
+      tags:
+        - Assistants
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssistantCreate"
+      responses:
+        "200":
+          description: Assistant created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Assistant"
+
+    get:
+      summary: List assistants
+      description: List assistants visible to the caller.
+      operationId: listAssistants
+      tags:
+        - Assistants
+      parameters:
+        - name: phone
+          in: query
+          schema:
+            type: string
+          description: Filter by phone number
+        - name: email
+          in: query
+          schema:
+            type: string
+            format: email
+          description: Filter by email address
+        - name: agent_id
+          in: query
+          schema:
+            type: integer
+          description: Filter by assistant identifier
+        - name: list_all_org
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: List all assistants in the organization
+      responses:
+        "200":
+          description: List of assistants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Assistant"
+
+  /assistant/{assistant_id}:
+    delete:
+      summary: Delete an assistant
+      description: Delete an assistant that the caller can manage.
+      operationId: deleteAssistant
+      tags:
+        - Assistants
+      parameters:
+        - name: assistant_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Assistant identifier
+      responses:
+        "200":
+          description: Assistant deleted
+        "404":
+          description: Assistant not found
+
+  /assistant/{assistant_id}/config:
+    patch:
+      summary: Update assistant config
+      description: Update an assistant's editable configuration fields.
+      operationId: updateAssistantConfig
+      tags:
+        - Assistants
+      parameters:
+        - name: assistant_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Assistant identifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              description: Configuration fields to update
+      responses:
+        "200":
+          description: Assistant config updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Assistant"
+
+  /assistant/{target_assistant_id}/preseed:
+    post:
+      summary: Preseed an assistant
+      description: Pre-populate an assistant with initial data or configuration.
+      operationId: preseedAssistant
+      tags:
+        - Assistants
+      parameters:
+        - name: target_assistant_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Target assistant identifier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Assistant preseeded
+
+  # Spaces
+  /spaces:
+    post:
+      summary: Create a space
+      description: Create a new collaboration space.
+      operationId: createSpace
+      tags:
+        - Spaces
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Space name
+                config:
+                  type: object
+                  additionalProperties: true
+              required:
+                - name
+      responses:
+        "200":
+          description: Space created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Space"
+
+    get:
+      summary: List spaces
+      description: List all spaces visible to the authenticated user.
+      operationId: listSpaces
+      tags:
+        - Spaces
+      parameters:
+        - name: assistant_id
+          in: query
+          schema:
+            type: integer
+          description: Filter spaces by assistant membership
+      responses:
+        "200":
+          description: List of spaces
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Space"
+
+  /spaces/{space_id}:
+    patch:
+      summary: Update a space
+      description: Update the configuration of an existing space.
+      operationId: updateSpace
+      tags:
+        - Spaces
+      parameters:
+        - name: space_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Space identifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        "200":
+          description: Space updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Space"
+
+    delete:
+      summary: Delete a space
+      description: Delete a space by its identifier.
+      operationId: deleteSpace
+      tags:
+        - Spaces
+      parameters:
+        - name: space_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Space identifier
+      responses:
+        "200":
+          description: Space deleted
+        "404":
+          description: Space not found
+
+  /spaces/{space_id}/members:
+    post:
+      summary: Add space member
+      description: Add an assistant as a member of a space.
+      operationId: addSpaceMember
+      tags:
+        - Spaces
+      parameters:
+        - name: space_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Space identifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                assistant_id:
+                  type: integer
+                  description: Assistant to add
+              required:
+                - assistant_id
+      responses:
+        "200":
+          description: Member added
+
+    get:
+      summary: List space members
+      description: List all assistants who are members of a space.
+      operationId: listSpaceMembers
+      tags:
+        - Spaces
+      parameters:
+        - name: space_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Space identifier
+      responses:
+        "200":
+          description: List of space members
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Assistant"
+
+  /spaces/{space_id}/members/{assistant_id}:
+    delete:
+      summary: Remove space member
+      description: Remove an assistant from a space.
+      operationId: removeSpaceMember
+      tags:
+        - Spaces
+      parameters:
+        - name: space_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Space identifier
+        - name: assistant_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Assistant identifier
+      responses:
+        "200":
+          description: Member removed
+
+  /assistants/{assistant_id}/spaces:
+    get:
+      summary: List spaces for an assistant
+      description: List all spaces an assistant is a member of.
+      operationId: listSpacesForAssistant
+      tags:
+        - Spaces
+      parameters:
+        - name: assistant_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Assistant identifier
+      responses:
+        "200":
+          description: List of spaces
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Space"
+
+  # Contexts
+  /project/{project}/contexts:
+    post:
+      summary: Create a context
+      description: Create a new context within a project.
+      operationId: createContext
+      tags:
+        - Contexts
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Context name
+              required:
+                - name
+      responses:
+        "200":
+          description: Context created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Context"
+
+    get:
+      summary: List contexts
+      description: List all contexts within a project.
+      operationId: listContexts
+      tags:
+        - Contexts
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project name
+      responses:
+        "200":
+          description: List of contexts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Context"
+
+  /project/{project}/contexts/{name}:
+    get:
+      summary: Get a context
+      description: Retrieve a specific context by name within a project.
+      operationId: getContext
+      tags:
+        - Contexts
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project name
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Context name
+      responses:
+        "200":
+          description: Context record
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Context"
+
+    delete:
+      summary: Delete a context
+      description: Delete a specific context within a project.
+      operationId: deleteContext
+      tags:
+        - Contexts
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project name
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Context name
+      responses:
+        "200":
+          description: Context deleted
+
+  /project/{project}/contexts/{name}/rename:
+    patch:
+      summary: Rename a context
+      description: Rename an existing context within a project.
+      operationId: renameContext
+      tags:
+        - Contexts
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project name
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Current context name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                new_name:
+                  type: string
+                  description: New context name
+              required:
+                - new_name
+      responses:
+        "200":
+          description: Context renamed
+
+  /project/{project}/contexts/add_logs:
+    post:
+      summary: Add logs to context
+      description: Add existing log entries to a context.
+      operationId: addLogsToContext
+      tags:
+        - Contexts
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  type: string
+                  description: Target context name
+                log_ids:
+                  type: array
+                  items:
+                    type: integer
+                  description: Log IDs to add
+              required:
+                - context
+                - log_ids
+      responses:
+        "200":
+          description: Logs added to context
+
+  /project/{project}/contexts/{name}/commit:
+    post:
+      summary: Commit a context snapshot
+      description: Save a versioned snapshot of a context.
+      operationId: commitContext
+      tags:
+        - Contexts
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project name
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Context name
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: Commit message
+      responses:
+        "200":
+          description: Context committed
+
+  /project/{project}/contexts/{name}/rollback:
+    post:
+      summary: Rollback a context
+      description: Restore a context to a previous committed state.
+      operationId: rollbackContext
+      tags:
+        - Contexts
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project name
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Context name
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                commit_id:
+                  type: string
+                  description: Commit ID to roll back to
+      responses:
+        "200":
+          description: Context rolled back
+
+  # Organizations
+  /organizations/{organization_id}/invites:
+    post:
+      summary: Create organization invite
+      description: Invite a user to join an organization.
+      operationId: createOrganizationInvite
+      tags:
+        - Organizations
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Organization identifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email address to invite
+                role:
+                  type: string
+                  description: Role to assign
+      responses:
+        "200":
+          description: Invite sent
+
+  /organizations/{organization_id}/members:
+    get:
+      summary: List organization members
+      description: List all members of an organization.
+      operationId: listOrganizationMembers
+      tags:
+        - Organizations
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Organization identifier
+      responses:
+        "200":
+          description: List of organization members
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserBasicInfo"
+
+tags:
+  - name: Platform
+    description: Platform-level utilities including credits and user info
+  - name: Agent
+    description: Send messages to and retrieve messages from assistants
+  - name: Projects
+    description: Create and manage projects for organizing logs and contexts
+  - name: Logs
+    description: Structured logging — create, query, derive, and manage log entries
+  - name: Assistants
+    description: Create and manage AI assistants within your workspace
+  - name: Spaces
+    description: Collaboration spaces for grouping assistants
+  - name: Contexts
+    description: Named sub-collections of logs within a project
+  - name: Organizations
+    description: Multi-user organization management

@@ -1,0 +1,959 @@
+{
+  "info": {
+    "_postman_id": "da62f82f-5d81-469d-a11d-db714ef843b8",
+    "name": "Unify Universal Agent Contexts API",
+    "description": "The Unify Universal API provides a unified REST interface for the Unify platform's LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.\n\n\nContact Support:\n Name: Unify",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:22:36.000Z",
+    "updatedAt": "2026-07-28T03:22:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-da62f82f-5d81-469d-a11d-db714ef843b8"
+  },
+  "item": [
+    {
+      "name": "project",
+      "item": [
+        {
+          "name": "{project}",
+          "item": [
+            {
+              "name": "contexts",
+              "item": [
+                {
+                  "name": "{name}",
+                  "item": [
+                    {
+                      "name": "rename",
+                      "item": [
+                        {
+                          "name": "Rename a context",
+                          "id": "e33dde53-6dbb-4407-bc92-ac6f3da7d48a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"new_name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/project/:project/contexts/:name/rename",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "project",
+                                ":project",
+                                "contexts",
+                                ":name",
+                                "rename"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "537ce0dc-62a1-4a1d-a4fa-b76fa9eb3486",
+                                  "key": "project",
+                                  "value": "<string>",
+                                  "description": "(Required) Project name"
+                                },
+                                {
+                                  "id": "a1592723-e23a-4d5f-85c9-11c29bdc4974",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "description": "(Required) Current context name"
+                                }
+                              ]
+                            },
+                            "description": "Rename an existing context within a project."
+                          },
+                          "response": [
+                            {
+                              "id": "dbb94aeb-250a-4087-ae77-d8e0caa7c02f",
+                              "name": "Context renamed",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"new_name\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/project/:project/contexts/:name/rename",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "project",
+                                    ":project",
+                                    "contexts",
+                                    ":name",
+                                    "rename"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T03:22:37.000Z",
+                              "updatedAt": "2026-07-28T03:22:37.000Z",
+                              "uid": "35240-dbb94aeb-250a-4087-ae77-d8e0caa7c02f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:22:37.000Z",
+                          "updatedAt": "2026-07-28T03:22:37.000Z",
+                          "uid": "35240-e33dde53-6dbb-4407-bc92-ac6f3da7d48a"
+                        }
+                      ],
+                      "id": "eb6134c0-4472-47d8-bd20-12272c2999e7",
+                      "createdAt": "2026-07-28T03:22:37.000Z",
+                      "updatedAt": "2026-07-28T03:22:37.000Z",
+                      "uid": "35240-eb6134c0-4472-47d8-bd20-12272c2999e7"
+                    },
+                    {
+                      "name": "commit",
+                      "item": [
+                        {
+                          "name": "Commit a context snapshot",
+                          "id": "32694c39-27ca-4bff-a389-da62169f7d7c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"message\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/project/:project/contexts/:name/commit",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "project",
+                                ":project",
+                                "contexts",
+                                ":name",
+                                "commit"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "07018be9-1ba3-4f9f-a6ee-9038c5ef6dd4",
+                                  "key": "project",
+                                  "value": "<string>",
+                                  "description": "(Required) Project name"
+                                },
+                                {
+                                  "id": "2969c3b2-7653-4747-87fe-150d99b306d8",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "description": "(Required) Context name"
+                                }
+                              ]
+                            },
+                            "description": "Save a versioned snapshot of a context."
+                          },
+                          "response": [
+                            {
+                              "id": "7a35b305-9f74-4b94-a388-f1fa55cdd7c5",
+                              "name": "Context committed",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"message\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/project/:project/contexts/:name/commit",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "project",
+                                    ":project",
+                                    "contexts",
+                                    ":name",
+                                    "commit"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T03:22:37.000Z",
+                              "updatedAt": "2026-07-28T03:22:37.000Z",
+                              "uid": "35240-7a35b305-9f74-4b94-a388-f1fa55cdd7c5"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:22:37.000Z",
+                          "updatedAt": "2026-07-28T03:22:37.000Z",
+                          "uid": "35240-32694c39-27ca-4bff-a389-da62169f7d7c"
+                        }
+                      ],
+                      "id": "1697782b-59bc-4cd0-98fe-27bf223c0cba",
+                      "createdAt": "2026-07-28T03:22:37.000Z",
+                      "updatedAt": "2026-07-28T03:22:37.000Z",
+                      "uid": "35240-1697782b-59bc-4cd0-98fe-27bf223c0cba"
+                    },
+                    {
+                      "name": "rollback",
+                      "item": [
+                        {
+                          "name": "Rollback a context",
+                          "id": "0050fa21-2b7c-4c37-a042-9d1ccbb1c439",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"commit_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/project/:project/contexts/:name/rollback",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "project",
+                                ":project",
+                                "contexts",
+                                ":name",
+                                "rollback"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "cbabe298-828b-4093-84f2-f7dd58a5e2fb",
+                                  "key": "project",
+                                  "value": "<string>",
+                                  "description": "(Required) Project name"
+                                },
+                                {
+                                  "id": "7dbf2f7c-f287-47e1-80d7-b441f1741523",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "description": "(Required) Context name"
+                                }
+                              ]
+                            },
+                            "description": "Restore a context to a previous committed state."
+                          },
+                          "response": [
+                            {
+                              "id": "18570a89-bde5-48ff-afee-cf642fc7f60a",
+                              "name": "Context rolled back",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"commit_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/project/:project/contexts/:name/rollback",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "project",
+                                    ":project",
+                                    "contexts",
+                                    ":name",
+                                    "rollback"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "project"
+                                    },
+                                    {
+                                      "key": "name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T03:22:37.000Z",
+                              "updatedAt": "2026-07-28T03:22:37.000Z",
+                              "uid": "35240-18570a89-bde5-48ff-afee-cf642fc7f60a"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:22:37.000Z",
+                          "updatedAt": "2026-07-28T03:22:37.000Z",
+                          "uid": "35240-0050fa21-2b7c-4c37-a042-9d1ccbb1c439"
+                        }
+                      ],
+                      "id": "a098690c-ef8d-45ba-90c5-95680e16205b",
+                      "createdAt": "2026-07-28T03:22:37.000Z",
+                      "updatedAt": "2026-07-28T03:22:37.000Z",
+                      "uid": "35240-a098690c-ef8d-45ba-90c5-95680e16205b"
+                    },
+                    {
+                      "name": "Get a context",
+                      "id": "57062994-5e0f-42fb-84d9-41bcc83d1764",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/project/:project/contexts/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "project",
+                            ":project",
+                            "contexts",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "id": "76102d20-af45-4d75-9500-293fb4cf71ab",
+                              "key": "project",
+                              "value": "<string>",
+                              "description": "(Required) Project name"
+                            },
+                            {
+                              "id": "58161e03-cee5-490c-a253-8d073f1fc710",
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) Context name"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a specific context by name within a project."
+                      },
+                      "response": [
+                        {
+                          "id": "59ef3dc3-594d-4f6b-a034-5c013de75ab6",
+                          "name": "Context record",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/project/:project/contexts/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "project",
+                                ":project",
+                                "contexts",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project"
+                                },
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"project\": \"<string>\",\n  \"logs\": [\n    {\n      \"id\": \"<integer>\",\n      \"ts\": \"<dateTime>\",\n      \"project\": \"<string>\",\n      \"context\": \"<string>\",\n      \"entries\": {\n        \"commodoa\": 5447656.199499875,\n        \"incididunt_4\": 10216819\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"ts\": \"<dateTime>\",\n      \"project\": \"<string>\",\n      \"context\": \"<string>\",\n      \"entries\": {\n        \"qui0\": -64800692.72733324,\n        \"aute3f\": \"irure pariatur et aliquip in\"\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T03:22:37.000Z",
+                          "updatedAt": "2026-07-28T03:22:37.000Z",
+                          "uid": "35240-59ef3dc3-594d-4f6b-a034-5c013de75ab6"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:22:37.000Z",
+                      "updatedAt": "2026-07-28T03:22:37.000Z",
+                      "uid": "35240-57062994-5e0f-42fb-84d9-41bcc83d1764"
+                    },
+                    {
+                      "name": "Delete a context",
+                      "id": "b071eb9c-f5d0-47dc-8bb1-c95a02fbf210",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/project/:project/contexts/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "project",
+                            ":project",
+                            "contexts",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b0d0bc44-e753-4b1a-8c8e-15f8fa6270fc",
+                              "key": "project",
+                              "value": "<string>",
+                              "description": "(Required) Project name"
+                            },
+                            {
+                              "id": "ed49c725-d211-4a90-9210-06cfce8aaf9e",
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) Context name"
+                            }
+                          ]
+                        },
+                        "description": "Delete a specific context within a project."
+                      },
+                      "response": [
+                        {
+                          "id": "a9e7cf39-b015-43c3-9ca7-4f0cb2ee9255",
+                          "name": "Context deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/project/:project/contexts/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "project",
+                                ":project",
+                                "contexts",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project"
+                                },
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:22:37.000Z",
+                          "updatedAt": "2026-07-28T03:22:37.000Z",
+                          "uid": "35240-a9e7cf39-b015-43c3-9ca7-4f0cb2ee9255"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:22:37.000Z",
+                      "updatedAt": "2026-07-28T03:22:37.000Z",
+                      "uid": "35240-b071eb9c-f5d0-47dc-8bb1-c95a02fbf210"
+                    }
+                  ],
+                  "id": "cebcc5ae-a72b-4855-a04b-006b1e77d519",
+                  "createdAt": "2026-07-28T03:22:37.000Z",
+                  "updatedAt": "2026-07-28T03:22:37.000Z",
+                  "uid": "35240-cebcc5ae-a72b-4855-a04b-006b1e77d519"
+                },
+                {
+                  "name": "add_logs",
+                  "item": [
+                    {
+                      "name": "Add logs to context",
+                      "id": "7992e358-decd-4d76-bd6b-47a13ed6fb8d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"context\": \"<string>\",\n  \"log_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/project/:project/contexts/add_logs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "project",
+                            ":project",
+                            "contexts",
+                            "add_logs"
+                          ],
+                          "variable": [
+                            {
+                              "id": "27a9fff6-18e8-4b63-bdb5-ea75f2eea288",
+                              "key": "project",
+                              "value": "<string>",
+                              "description": "(Required) Project name"
+                            }
+                          ]
+                        },
+                        "description": "Add existing log entries to a context."
+                      },
+                      "response": [
+                        {
+                          "id": "73e2c78b-205e-47e7-b243-c36f06bca090",
+                          "name": "Logs added to context",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"context\": \"<string>\",\n  \"log_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/project/:project/contexts/add_logs",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "project",
+                                ":project",
+                                "contexts",
+                                "add_logs"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "project"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:22:37.000Z",
+                          "updatedAt": "2026-07-28T03:22:37.000Z",
+                          "uid": "35240-73e2c78b-205e-47e7-b243-c36f06bca090"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:22:37.000Z",
+                      "updatedAt": "2026-07-28T03:22:37.000Z",
+                      "uid": "35240-7992e358-decd-4d76-bd6b-47a13ed6fb8d"
+                    }
+                  ],
+                  "id": "28816064-42e0-46e4-853d-fabda5073578",
+                  "createdAt": "2026-07-28T03:22:37.000Z",
+                  "updatedAt": "2026-07-28T03:22:37.000Z",
+                  "uid": "35240-28816064-42e0-46e4-853d-fabda5073578"
+                },
+                {
+                  "name": "Create a context",
+                  "id": "4272346d-8b0a-4e4f-8ca4-749e37bcce24",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/project/:project/contexts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "project",
+                        ":project",
+                        "contexts"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6f6012fc-ab42-4f2b-a063-a488c62c14ef",
+                          "key": "project",
+                          "value": "<string>",
+                          "description": "(Required) Project name"
+                        }
+                      ]
+                    },
+                    "description": "Create a new context within a project."
+                  },
+                  "response": [
+                    {
+                      "id": "bc312764-528a-43c7-a4e5-123605efd31e",
+                      "name": "Context created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/project/:project/contexts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "project",
+                            ":project",
+                            "contexts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"project\": \"<string>\",\n  \"logs\": [\n    {\n      \"id\": \"<integer>\",\n      \"ts\": \"<dateTime>\",\n      \"project\": \"<string>\",\n      \"context\": \"<string>\",\n      \"entries\": {\n        \"commodoa\": 5447656.199499875,\n        \"incididunt_4\": 10216819\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"ts\": \"<dateTime>\",\n      \"project\": \"<string>\",\n      \"context\": \"<string>\",\n      \"entries\": {\n        \"qui0\": -64800692.72733324,\n        \"aute3f\": \"irure pariatur et aliquip in\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:22:37.000Z",
+                      "updatedAt": "2026-07-28T03:22:37.000Z",
+                      "uid": "35240-bc312764-528a-43c7-a4e5-123605efd31e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:37.000Z",
+                  "updatedAt": "2026-07-28T03:22:37.000Z",
+                  "uid": "35240-4272346d-8b0a-4e4f-8ca4-749e37bcce24"
+                },
+                {
+                  "name": "List contexts",
+                  "id": "e0a62baf-130f-4081-b499-ef5d1e981846",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/project/:project/contexts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "project",
+                        ":project",
+                        "contexts"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6d12b765-7367-4fa1-874a-7f07463ac772",
+                          "key": "project",
+                          "value": "<string>",
+                          "description": "(Required) Project name"
+                        }
+                      ]
+                    },
+                    "description": "List all contexts within a project."
+                  },
+                  "response": [
+                    {
+                      "id": "1ff6696d-00fd-41ea-9a6a-d2a2383358a8",
+                      "name": "List of contexts",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/project/:project/contexts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "project",
+                            ":project",
+                            "contexts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "project"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"name\": \"<string>\",\n    \"project\": \"<string>\",\n    \"logs\": [\n      {\n        \"id\": \"<integer>\",\n        \"ts\": \"<dateTime>\",\n        \"project\": \"<string>\",\n        \"context\": \"<string>\",\n        \"entries\": {\n          \"magna__7\": 44788449.87451106\n        }\n      },\n      {\n        \"id\": \"<integer>\",\n        \"ts\": \"<dateTime>\",\n        \"project\": \"<string>\",\n        \"context\": \"<string>\",\n        \"entries\": {\n          \"non_a64\": 83201893\n        }\n      }\n    ]\n  },\n  {\n    \"name\": \"<string>\",\n    \"project\": \"<string>\",\n    \"logs\": [\n      {\n        \"id\": \"<integer>\",\n        \"ts\": \"<dateTime>\",\n        \"project\": \"<string>\",\n        \"context\": \"<string>\",\n        \"entries\": {\n          \"in__68\": true,\n          \"nostrudf0\": -28836857.667387858\n        }\n      },\n      {\n        \"id\": \"<integer>\",\n        \"ts\": \"<dateTime>\",\n        \"project\": \"<string>\",\n        \"context\": \"<string>\",\n        \"entries\": {\n          \"non_97\": -54460107.06280804\n        }\n      }\n    ]\n  }\n]",
+                      "createdAt": "2026-07-28T03:22:37.000Z",
+                      "updatedAt": "2026-07-28T03:22:37.000Z",
+                      "uid": "35240-1ff6696d-00fd-41ea-9a6a-d2a2383358a8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:37.000Z",
+                  "updatedAt": "2026-07-28T03:22:37.000Z",
+                  "uid": "35240-e0a62baf-130f-4081-b499-ef5d1e981846"
+                }
+              ],
+              "id": "497a204d-66ee-4271-a29a-305a42abd1d6",
+              "createdAt": "2026-07-28T03:22:37.000Z",
+              "updatedAt": "2026-07-28T03:22:37.000Z",
+              "uid": "35240-497a204d-66ee-4271-a29a-305a42abd1d6"
+            }
+          ],
+          "id": "566b890d-55da-4191-87b8-a556b0c991ac",
+          "createdAt": "2026-07-28T03:22:37.000Z",
+          "updatedAt": "2026-07-28T03:22:37.000Z",
+          "uid": "35240-566b890d-55da-4191-87b8-a556b0c991ac"
+        }
+      ],
+      "id": "856a320b-609d-4115-8dd7-ff8a79219db9",
+      "createdAt": "2026-07-28T03:22:37.000Z",
+      "updatedAt": "2026-07-28T03:22:37.000Z",
+      "uid": "35240-856a320b-609d-4115-8dd7-ff8a79219db9"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.unify.ai/v0"
+    }
+  ]
+}

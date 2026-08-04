@@ -1,0 +1,28 @@
+{
+  "provider": "unify-ai",
+  "sources": [
+    "unify-ai-agent-api-openapi.yml",
+    "unify-ai-assistants-api-openapi.yml",
+    "unify-ai-contexts-api-openapi.yml",
+    "unify-ai-logs-api-openapi.yml",
+    "unify-ai-organizations-api-openapi.yml",
+    "unify-ai-platform-api-openapi.yml",
+    "unify-ai-projects-api-openapi.yml",
+    "unify-ai-spaces-api-openapi.yml"
+  ],
+  "outputs": [
+    "unify-ai-agent-api-openapi.yml",
+    "unify-ai-assistants-api-openapi.yml",
+    "unify-ai-contexts-api-openapi.yml",
+    "unify-ai-logs-api-openapi.yml",
+    "unify-ai-organizations-api-openapi.yml",
+    "unify-ai-platform-api-openapi.yml",
+    "unify-ai-projects-api-openapi.yml",
+    "unify-ai-spaces-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

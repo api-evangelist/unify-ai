@@ -1,0 +1,335 @@
+{
+  "info": {
+    "_postman_id": "d1a8bbe2-e4f6-49ef-8109-9167b9c73a91",
+    "name": "Unify Universal Agent Platform API",
+    "description": "The Unify Universal API provides a unified REST interface for the Unify platform's LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.\n\n\nContact Support:\n Name: Unify",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:22:41.000Z",
+    "updatedAt": "2026-07-28T03:22:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d1a8bbe2-e4f6-49ef-8109-9167b9c73a91"
+  },
+  "item": [
+    {
+      "name": "credits",
+      "item": [
+        {
+          "name": "deduct",
+          "item": [
+            {
+              "name": "Deduct credits",
+              "id": "836760cf-8b99-43fd-a8e4-ca41fd0dff07",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<number>\",\n  \"category\": \"<string>\",\n  \"assistant_id\": \"<integer>\",\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"detail\": {\n    \"fugiat_4\": -87060381.1642873\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/credits/deduct",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "credits",
+                    "deduct"
+                  ]
+                },
+                "description": "Deduct credits from the authenticated user's account. The amount must be positive. The balance is allowed to go negative (overdraft) so that downstream spending-limit hooks can detect and block further usage.\n"
+              },
+              "response": [
+                {
+                  "id": "5c89c5b3-7b60-4114-a3f2-29766d170eef",
+                  "name": "Credits deducted successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<number>\",\n  \"category\": \"<string>\",\n  \"assistant_id\": \"<integer>\",\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"detail\": {\n    \"fugiat_4\": -87060381.1642873\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/credits/deduct",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "credits",
+                        "deduct"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"previous_credits\": \"<number>\",\n  \"deducted\": \"<number>\",\n  \"current_credits\": \"<number>\"\n}",
+                  "createdAt": "2026-07-28T03:22:42.000Z",
+                  "updatedAt": "2026-07-28T03:22:42.000Z",
+                  "uid": "35240-5c89c5b3-7b60-4114-a3f2-29766d170eef"
+                },
+                {
+                  "id": "f2f824dd-fb64-4c7f-82b8-5fd9d798c34a",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<number>\",\n  \"category\": \"<string>\",\n  \"assistant_id\": \"<integer>\",\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"detail\": {\n    \"fugiat_4\": -87060381.1642873\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/credits/deduct",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "credits",
+                        "deduct"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:42.000Z",
+                  "updatedAt": "2026-07-28T03:22:42.000Z",
+                  "uid": "35240-f2f824dd-fb64-4c7f-82b8-5fd9d798c34a"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:42.000Z",
+              "updatedAt": "2026-07-28T03:22:42.000Z",
+              "uid": "35240-836760cf-8b99-43fd-a8e4-ca41fd0dff07"
+            }
+          ],
+          "id": "3d992230-4cec-4c8d-93b6-3d97e3e3e31b",
+          "createdAt": "2026-07-28T03:22:42.000Z",
+          "updatedAt": "2026-07-28T03:22:42.000Z",
+          "uid": "35240-3d992230-4cec-4c8d-93b6-3d97e3e3e31b"
+        }
+      ],
+      "id": "0b2fb8c5-8a67-4cdc-8a24-1a2c988cc89f",
+      "createdAt": "2026-07-28T03:22:42.000Z",
+      "updatedAt": "2026-07-28T03:22:42.000Z",
+      "uid": "35240-0b2fb8c5-8a67-4cdc-8a24-1a2c988cc89f"
+    },
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "basic-info",
+          "item": [
+            {
+              "name": "Get user basic info",
+              "id": "ac54b509-d3a8-4f4b-9a59-e912bf89fa80",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/user/basic-info",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user",
+                    "basic-info"
+                  ]
+                },
+                "description": "Get basic information for the authenticated user."
+              },
+              "response": [
+                {
+                  "id": "2ef20bb3-3e65-47fe-8fd6-080c847ea466",
+                  "name": "User information",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user/basic-info",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "basic-info"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"name\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:42.000Z",
+                  "updatedAt": "2026-07-28T03:22:42.000Z",
+                  "uid": "35240-2ef20bb3-3e65-47fe-8fd6-080c847ea466"
+                },
+                {
+                  "id": "b10fe5e8-3025-4bc3-9056-4ccfab1ca408",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user/basic-info",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "basic-info"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:22:42.000Z",
+                  "updatedAt": "2026-07-28T03:22:42.000Z",
+                  "uid": "35240-b10fe5e8-3025-4bc3-9056-4ccfab1ca408"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:42.000Z",
+              "updatedAt": "2026-07-28T03:22:42.000Z",
+              "uid": "35240-ac54b509-d3a8-4f4b-9a59-e912bf89fa80"
+            }
+          ],
+          "id": "d8c8dfe9-5e21-4453-826a-913911f6e5fb",
+          "createdAt": "2026-07-28T03:22:42.000Z",
+          "updatedAt": "2026-07-28T03:22:42.000Z",
+          "uid": "35240-d8c8dfe9-5e21-4453-826a-913911f6e5fb"
+        }
+      ],
+      "id": "884c73ac-ea72-4dac-8b12-f65101103f4d",
+      "createdAt": "2026-07-28T03:22:42.000Z",
+      "updatedAt": "2026-07-28T03:22:42.000Z",
+      "uid": "35240-884c73ac-ea72-4dac-8b12-f65101103f4d"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.unify.ai/v0"
+    }
+  ]
+}

@@ -1,0 +1,261 @@
+{
+  "info": {
+    "_postman_id": "2ebfa186-b470-41eb-a3ef-77bdb846f532",
+    "name": "Unify Universal Agent Organizations API",
+    "description": "The Unify Universal API provides a unified REST interface for the Unify platform's LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.\n\n\nContact Support:\n Name: Unify",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:22:38.000Z",
+    "updatedAt": "2026-07-28T03:22:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2ebfa186-b470-41eb-a3ef-77bdb846f532"
+  },
+  "item": [
+    {
+      "name": "organizations",
+      "item": [
+        {
+          "name": "{organization_id}",
+          "item": [
+            {
+              "name": "invites",
+              "item": [
+                {
+                  "name": "Create organization invite",
+                  "id": "7eab9b16-d901-43a4-aabf-3f2f1553d7ee",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"role\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:organization_id/invites",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":organization_id",
+                        "invites"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b5c3d80c-c4f8-4af6-a4c7-4563bc89c145",
+                          "key": "organization_id",
+                          "value": "<integer>",
+                          "description": "(Required) Organization identifier"
+                        }
+                      ]
+                    },
+                    "description": "Invite a user to join an organization."
+                  },
+                  "response": [
+                    {
+                      "id": "84a09159-f571-407c-bd49-45576ae4e3ab",
+                      "name": "Invite sent",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<email>\",\n  \"role\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organization_id/invites",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organization_id",
+                            "invites"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:22:39.000Z",
+                      "updatedAt": "2026-07-28T03:22:39.000Z",
+                      "uid": "35240-84a09159-f571-407c-bd49-45576ae4e3ab"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:39.000Z",
+                  "updatedAt": "2026-07-28T03:22:39.000Z",
+                  "uid": "35240-7eab9b16-d901-43a4-aabf-3f2f1553d7ee"
+                }
+              ],
+              "id": "6317bf8d-16d0-46b4-a913-530d611a1149",
+              "createdAt": "2026-07-28T03:22:39.000Z",
+              "updatedAt": "2026-07-28T03:22:39.000Z",
+              "uid": "35240-6317bf8d-16d0-46b4-a913-530d611a1149"
+            },
+            {
+              "name": "members",
+              "item": [
+                {
+                  "name": "List organization members",
+                  "id": "2d26e50a-f32b-4365-a69a-b81ca1720cab",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:organization_id/members",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":organization_id",
+                        "members"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b26d8c19-9955-408b-98c9-ff6450799711",
+                          "key": "organization_id",
+                          "value": "<integer>",
+                          "description": "(Required) Organization identifier"
+                        }
+                      ]
+                    },
+                    "description": "List all members of an organization."
+                  },
+                  "response": [
+                    {
+                      "id": "ea6d20d9-0d22-4ca6-a4d5-ff6f9c135c3c",
+                      "name": "List of organization members",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organization_id/members",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organization_id",
+                            "members"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"email\": \"<email>\",\n    \"name\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"email\": \"<email>\",\n    \"name\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-07-28T03:22:39.000Z",
+                      "updatedAt": "2026-07-28T03:22:39.000Z",
+                      "uid": "35240-ea6d20d9-0d22-4ca6-a4d5-ff6f9c135c3c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:39.000Z",
+                  "updatedAt": "2026-07-28T03:22:39.000Z",
+                  "uid": "35240-2d26e50a-f32b-4365-a69a-b81ca1720cab"
+                }
+              ],
+              "id": "b83adf12-6e79-4970-b63a-d0a831af969b",
+              "createdAt": "2026-07-28T03:22:39.000Z",
+              "updatedAt": "2026-07-28T03:22:39.000Z",
+              "uid": "35240-b83adf12-6e79-4970-b63a-d0a831af969b"
+            }
+          ],
+          "id": "92cd5298-34e3-4777-8919-77aef1ce93a3",
+          "createdAt": "2026-07-28T03:22:39.000Z",
+          "updatedAt": "2026-07-28T03:22:39.000Z",
+          "uid": "35240-92cd5298-34e3-4777-8919-77aef1ce93a3"
+        }
+      ],
+      "id": "fb3acdb2-fd78-421d-b5f1-a2eda4851176",
+      "createdAt": "2026-07-28T03:22:39.000Z",
+      "updatedAt": "2026-07-28T03:22:39.000Z",
+      "uid": "35240-fb3acdb2-fd78-421d-b5f1-a2eda4851176"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.unify.ai/v0"
+    }
+  ]
+}

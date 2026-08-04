@@ -1,0 +1,1491 @@
+{
+  "info": {
+    "_postman_id": "dbb2b9fb-087c-4dd5-9d3e-d7ea89ac0416",
+    "name": "Unify Universal Agent Logs API",
+    "description": "The Unify Universal API provides a unified REST interface for the Unify platform's LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.\n\n\nContact Support:\n Name: Unify",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:22:37.000Z",
+    "updatedAt": "2026-07-28T03:22:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-dbb2b9fb-087c-4dd5-9d3e-d7ea89ac0416"
+  },
+  "item": [
+    {
+      "name": "logs",
+      "item": [
+        {
+          "name": "fields",
+          "item": [
+            {
+              "name": "rename_field",
+              "item": [
+                {
+                  "name": "Rename a log field",
+                  "id": "dabc0397-b0a1-4740-b6af-888694b5c138",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"old_name\": \"<string>\",\n  \"new_name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/logs/fields/rename_field",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "logs",
+                        "fields",
+                        "rename_field"
+                      ]
+                    },
+                    "description": "Rename a field across all log entries in a project/context."
+                  },
+                  "response": [
+                    {
+                      "id": "916feae0-3c71-47d1-8d58-6e9572695516",
+                      "name": "Field renamed",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"old_name\": \"<string>\",\n  \"new_name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/logs/fields/rename_field",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "logs",
+                            "fields",
+                            "rename_field"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:22:38.000Z",
+                      "updatedAt": "2026-07-28T03:22:38.000Z",
+                      "uid": "35240-916feae0-3c71-47d1-8d58-6e9572695516"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:38.000Z",
+                  "updatedAt": "2026-07-28T03:22:38.000Z",
+                  "uid": "35240-dabc0397-b0a1-4740-b6af-888694b5c138"
+                }
+              ],
+              "id": "aa5f7b7e-b5d7-4729-af1f-f3e0ead01338",
+              "createdAt": "2026-07-28T03:22:38.000Z",
+              "updatedAt": "2026-07-28T03:22:38.000Z",
+              "uid": "35240-aa5f7b7e-b5d7-4729-af1f-f3e0ead01338"
+            },
+            {
+              "name": "List log fields",
+              "id": "d42f4a60-4035-4fec-91df-32225d9547a5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/logs/fields?project=<string>&context=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "logs",
+                    "fields"
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "context",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Get all field names present in the logs."
+              },
+              "response": [
+                {
+                  "id": "6cf3d261-1b9a-4e9a-af30-6c407ab29387",
+                  "name": "List of field names",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/logs/fields?project=<string>&context=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "logs",
+                        "fields"
+                      ],
+                      "query": [
+                        {
+                          "key": "project",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "context",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "createdAt": "2026-07-28T03:22:38.000Z",
+                  "updatedAt": "2026-07-28T03:22:38.000Z",
+                  "uid": "35240-6cf3d261-1b9a-4e9a-af30-6c407ab29387"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:38.000Z",
+              "updatedAt": "2026-07-28T03:22:38.000Z",
+              "uid": "35240-d42f4a60-4035-4fec-91df-32225d9547a5"
+            },
+            {
+              "name": "Query log fields",
+              "id": "05d65646-9861-400b-ae23-f255d5b2a845",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tempor690\": -71079861.9615141\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/logs/fields",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "logs",
+                    "fields"
+                  ]
+                },
+                "description": "Query fields from logs using a filter body."
+              },
+              "response": [
+                {
+                  "id": "7db58900-9bb8-4fec-a9a8-9fc00af17b6d",
+                  "name": "Field values",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tempor690\": -71079861.9615141\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/logs/fields",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "logs",
+                        "fields"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:22:38.000Z",
+                  "updatedAt": "2026-07-28T03:22:38.000Z",
+                  "uid": "35240-7db58900-9bb8-4fec-a9a8-9fc00af17b6d"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:38.000Z",
+              "updatedAt": "2026-07-28T03:22:38.000Z",
+              "uid": "35240-05d65646-9861-400b-ae23-f255d5b2a845"
+            },
+            {
+              "name": "Delete log fields",
+              "id": "e06cfd2c-69ab-4a9b-a885-621fb87923ac",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/logs/fields",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "logs",
+                    "fields"
+                  ]
+                },
+                "description": "Remove specific fields from log entries."
+              },
+              "response": [
+                {
+                  "id": "34cedc9e-ccfd-450e-9db3-fbda8ace66ed",
+                  "name": "Fields deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/logs/fields",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "logs",
+                        "fields"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:22:38.000Z",
+                  "updatedAt": "2026-07-28T03:22:38.000Z",
+                  "uid": "35240-34cedc9e-ccfd-450e-9db3-fbda8ace66ed"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:38.000Z",
+              "updatedAt": "2026-07-28T03:22:38.000Z",
+              "uid": "35240-e06cfd2c-69ab-4a9b-a885-621fb87923ac"
+            }
+          ],
+          "id": "3c0e1531-39f8-43c6-b96d-45926cfb4507",
+          "createdAt": "2026-07-28T03:22:38.000Z",
+          "updatedAt": "2026-07-28T03:22:38.000Z",
+          "uid": "35240-3c0e1531-39f8-43c6-b96d-45926cfb4507"
+        },
+        {
+          "name": "metric",
+          "item": [
+            {
+              "name": "{metric}",
+              "item": [
+                {
+                  "name": "Get log metric",
+                  "id": "76a8699a-6b74-4b2c-8783-8456c4306e8a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/logs/metric/:metric?field=<string>&project=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "logs",
+                        "metric",
+                        ":metric"
+                      ],
+                      "query": [
+                        {
+                          "description": "Field to aggregate",
+                          "key": "field",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "project",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "0f8d21ac-dbff-4fd8-ade7-b29fff68e304",
+                          "key": "metric",
+                          "value": "<string>",
+                          "description": "(Required) Metric name (e.g. mean, sum, count)"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a computed metric aggregated across log entries."
+                  },
+                  "response": [
+                    {
+                      "id": "643be4d2-0e11-49c6-9506-28fa8156fcc5",
+                      "name": "Metric value",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/logs/metric/:metric?field=<string>&project=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "logs",
+                            "metric",
+                            ":metric"
+                          ],
+                          "query": [
+                            {
+                              "description": "Field to aggregate",
+                              "key": "field",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "project",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "metric"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"metric\": \"<number>\"\n}",
+                      "createdAt": "2026-07-28T03:22:38.000Z",
+                      "updatedAt": "2026-07-28T03:22:38.000Z",
+                      "uid": "35240-643be4d2-0e11-49c6-9506-28fa8156fcc5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:38.000Z",
+                  "updatedAt": "2026-07-28T03:22:38.000Z",
+                  "uid": "35240-76a8699a-6b74-4b2c-8783-8456c4306e8a"
+                }
+              ],
+              "id": "32053faa-7b3c-4b70-8244-1746e4929e0c",
+              "createdAt": "2026-07-28T03:22:38.000Z",
+              "updatedAt": "2026-07-28T03:22:38.000Z",
+              "uid": "35240-32053faa-7b3c-4b70-8244-1746e4929e0c"
+            }
+          ],
+          "id": "c2043b3e-d7cb-4d8f-b01e-e4f70f781c22",
+          "createdAt": "2026-07-28T03:22:38.000Z",
+          "updatedAt": "2026-07-28T03:22:38.000Z",
+          "uid": "35240-c2043b3e-d7cb-4d8f-b01e-e4f70f781c22"
+        },
+        {
+          "name": "groups",
+          "item": [
+            {
+              "name": "Get log groups",
+              "id": "1e863846-e64a-4d14-850c-1feac46e1c5a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/logs/groups?group_by=<string>&project=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "logs",
+                    "groups"
+                  ],
+                  "query": [
+                    {
+                      "description": "Field to group by",
+                      "key": "group_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Retrieve grouped log entries."
+              },
+              "response": [
+                {
+                  "id": "f98d01b5-eead-4d93-90f5-62b55fce6bae",
+                  "name": "Grouped log entries",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/logs/groups?group_by=<string>&project=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "logs",
+                        "groups"
+                      ],
+                      "query": [
+                        {
+                          "description": "Field to group by",
+                          "key": "group_by",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "project",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:22:38.000Z",
+                  "updatedAt": "2026-07-28T03:22:38.000Z",
+                  "uid": "35240-f98d01b5-eead-4d93-90f5-62b55fce6bae"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:38.000Z",
+              "updatedAt": "2026-07-28T03:22:38.000Z",
+              "uid": "35240-1e863846-e64a-4d14-850c-1feac46e1c5a"
+            }
+          ],
+          "id": "ebe8cb6c-94be-457b-9fd0-e37d4ead19de",
+          "createdAt": "2026-07-28T03:22:38.000Z",
+          "updatedAt": "2026-07-28T03:22:38.000Z",
+          "uid": "35240-ebe8cb6c-94be-457b-9fd0-e37d4ead19de"
+        },
+        {
+          "name": "derived",
+          "item": [
+            {
+              "name": "Compute derived log fields",
+              "id": "59c2a942-d493-428b-a6f7-40ce56d221e6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tempor690\": -71079861.9615141\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/logs/derived",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "logs",
+                    "derived"
+                  ]
+                },
+                "description": "Compute derived fields from existing log entries."
+              },
+              "response": [
+                {
+                  "id": "45534c50-eeb3-49f9-8880-fc590756c516",
+                  "name": "Derived fields computed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tempor690\": -71079861.9615141\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/logs/derived",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "logs",
+                        "derived"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:22:38.000Z",
+                  "updatedAt": "2026-07-28T03:22:38.000Z",
+                  "uid": "35240-45534c50-eeb3-49f9-8880-fc590756c516"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:38.000Z",
+              "updatedAt": "2026-07-28T03:22:38.000Z",
+              "uid": "35240-59c2a942-d493-428b-a6f7-40ce56d221e6"
+            }
+          ],
+          "id": "81ac69d8-dab0-4a6c-a7d9-6b01fd442161",
+          "createdAt": "2026-07-28T03:22:38.000Z",
+          "updatedAt": "2026-07-28T03:22:38.000Z",
+          "uid": "35240-81ac69d8-dab0-4a6c-a7d9-6b01fd442161"
+        },
+        {
+          "name": "join",
+          "item": [
+            {
+              "name": "Join logs",
+              "id": "492fd163-22e9-4817-b656-98b242f51761",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tempor690\": -71079861.9615141\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/logs/join",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "logs",
+                    "join"
+                  ]
+                },
+                "description": "Join log entries from multiple contexts or projects."
+              },
+              "response": [
+                {
+                  "id": "822f701a-a1d3-41c2-a3cf-df4e4510ec67",
+                  "name": "Joined log results",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tempor690\": -71079861.9615141\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/logs/join",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "logs",
+                        "join"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:22:38.000Z",
+                  "updatedAt": "2026-07-28T03:22:38.000Z",
+                  "uid": "35240-822f701a-a1d3-41c2-a3cf-df4e4510ec67"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:38.000Z",
+              "updatedAt": "2026-07-28T03:22:38.000Z",
+              "uid": "35240-492fd163-22e9-4817-b656-98b242f51761"
+            }
+          ],
+          "id": "b5edee23-ea57-4776-9e24-50bed7f64cbb",
+          "createdAt": "2026-07-28T03:22:38.000Z",
+          "updatedAt": "2026-07-28T03:22:38.000Z",
+          "uid": "35240-b5edee23-ea57-4776-9e24-50bed7f64cbb"
+        },
+        {
+          "name": "join_query",
+          "item": [
+            {
+              "name": "Join query logs",
+              "id": "d03335ba-7d17-4c0e-8849-e43ef36fc59c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tempor690\": -71079861.9615141\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/logs/join_query",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "logs",
+                    "join_query"
+                  ]
+                },
+                "description": "Execute a join query across log data sources."
+              },
+              "response": [
+                {
+                  "id": "87975856-b387-4947-a647-61521e22b66b",
+                  "name": "Join query results",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tempor690\": -71079861.9615141\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/logs/join_query",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "logs",
+                        "join_query"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:22:38.000Z",
+                  "updatedAt": "2026-07-28T03:22:38.000Z",
+                  "uid": "35240-87975856-b387-4947-a647-61521e22b66b"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:38.000Z",
+              "updatedAt": "2026-07-28T03:22:38.000Z",
+              "uid": "35240-d03335ba-7d17-4c0e-8849-e43ef36fc59c"
+            }
+          ],
+          "id": "f9299023-0b09-416a-af80-43e5a81dc1f5",
+          "createdAt": "2026-07-28T03:22:38.000Z",
+          "updatedAt": "2026-07-28T03:22:38.000Z",
+          "uid": "35240-f9299023-0b09-416a-af80-43e5a81dc1f5"
+        },
+        {
+          "name": "{log_id}",
+          "item": [
+            {
+              "name": "fields",
+              "item": [
+                {
+                  "name": "{key}",
+                  "item": [
+                    {
+                      "name": "atomic",
+                      "item": [
+                        {
+                          "name": "Atomic field update",
+                          "id": "d0a9d7b5-dcfd-49a5-922f-904b18f8b193",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"value\": {\n    \"description\": \"New field value\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/logs/:log_id/fields/:key/atomic",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "logs",
+                                ":log_id",
+                                "fields",
+                                ":key",
+                                "atomic"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "7b98514e-f759-45f3-ac14-d8337a744f7b",
+                                  "key": "log_id",
+                                  "value": "<integer>",
+                                  "description": "(Required) Log entry identifier"
+                                },
+                                {
+                                  "id": "ac9c5e20-ee1e-41e7-9014-ba0536e0b4d5",
+                                  "key": "key",
+                                  "value": "<string>",
+                                  "description": "(Required) Field key to update"
+                                }
+                              ]
+                            },
+                            "description": "Atomically update a single field in a specific log entry."
+                          },
+                          "response": [
+                            {
+                              "id": "5c5c7358-5f06-4999-ad9c-d972f4af43f8",
+                              "name": "Field updated atomically",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"value\": {\n    \"description\": \"New field value\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/logs/:log_id/fields/:key/atomic",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "logs",
+                                    ":log_id",
+                                    "fields",
+                                    ":key",
+                                    "atomic"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "log_id"
+                                    },
+                                    {
+                                      "key": "key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T03:22:38.000Z",
+                              "updatedAt": "2026-07-28T03:22:38.000Z",
+                              "uid": "35240-5c5c7358-5f06-4999-ad9c-d972f4af43f8"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:22:38.000Z",
+                          "updatedAt": "2026-07-28T03:22:38.000Z",
+                          "uid": "35240-d0a9d7b5-dcfd-49a5-922f-904b18f8b193"
+                        }
+                      ],
+                      "id": "6ac61a87-c76a-43f9-b33a-8c67ab4b399d",
+                      "createdAt": "2026-07-28T03:22:38.000Z",
+                      "updatedAt": "2026-07-28T03:22:38.000Z",
+                      "uid": "35240-6ac61a87-c76a-43f9-b33a-8c67ab4b399d"
+                    }
+                  ],
+                  "id": "59b0b5c8-7014-496a-98b5-46c7b5b77a29",
+                  "createdAt": "2026-07-28T03:22:38.000Z",
+                  "updatedAt": "2026-07-28T03:22:38.000Z",
+                  "uid": "35240-59b0b5c8-7014-496a-98b5-46c7b5b77a29"
+                }
+              ],
+              "id": "57ebd36f-ad2c-4ec4-b629-87d58326dd59",
+              "createdAt": "2026-07-28T03:22:38.000Z",
+              "updatedAt": "2026-07-28T03:22:38.000Z",
+              "uid": "35240-57ebd36f-ad2c-4ec4-b629-87d58326dd59"
+            }
+          ],
+          "id": "d472239f-785a-4928-ac44-eb473a821151",
+          "createdAt": "2026-07-28T03:22:38.000Z",
+          "updatedAt": "2026-07-28T03:22:38.000Z",
+          "uid": "35240-d472239f-785a-4928-ac44-eb473a821151"
+        },
+        {
+          "name": "Get logs",
+          "id": "6e445c22-bd3d-41a3-bd59-f62e58460f87",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/logs?project=<string>&context=<string>&limit=<integer>&offset=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "logs"
+              ],
+              "query": [
+                {
+                  "description": "Filter by project name",
+                  "key": "project",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by context path",
+                  "key": "context",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of results to return",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Pagination offset",
+                  "key": "offset",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Retrieve log entries with optional filtering."
+          },
+          "response": [
+            {
+              "id": "04b6fa55-3cb1-4561-862e-4501873eeeeb",
+              "name": "Log entries",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/logs?project=<string>&context=<string>&limit=<integer>&offset=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "logs"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by project name",
+                      "key": "project",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by context path",
+                      "key": "context",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"ts\": \"<dateTime>\",\n    \"project\": \"<string>\",\n    \"context\": \"<string>\",\n    \"entries\": {\n      \"veniam_2f\": false\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"ts\": \"<dateTime>\",\n    \"project\": \"<string>\",\n    \"context\": \"<string>\",\n    \"entries\": {\n      \"dolorb3\": false,\n      \"magna_98\": -52502980.07891012,\n      \"doloref_c\": -39294256\n    }\n  }\n]",
+              "createdAt": "2026-07-28T03:22:38.000Z",
+              "updatedAt": "2026-07-28T03:22:38.000Z",
+              "uid": "35240-04b6fa55-3cb1-4561-862e-4501873eeeeb"
+            }
+          ],
+          "createdAt": "2026-07-28T03:22:38.000Z",
+          "updatedAt": "2026-07-28T03:22:38.000Z",
+          "uid": "35240-6e445c22-bd3d-41a3-bd59-f62e58460f87"
+        },
+        {
+          "name": "Create log entry",
+          "id": "78acde84-00da-4776-a8e2-c34100efc41e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project\": \"<string>\",\n  \"context\": \"<string>\",\n  \"entries\": {\n    \"veniam_1\": 39328765\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/logs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "logs"
+              ]
+            },
+            "description": "Create one or more new log entries."
+          },
+          "response": [
+            {
+              "id": "65d8a99f-10af-4043-8d8f-dd9e9c84a56a",
+              "name": "Log entry created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project\": \"<string>\",\n  \"context\": \"<string>\",\n  \"entries\": {\n    \"veniam_1\": 39328765\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/logs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "logs"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<integer>\",\n  \"ts\": \"<dateTime>\",\n  \"project\": \"<string>\",\n  \"context\": \"<string>\",\n  \"entries\": {\n    \"sitc0\": \"deserunt cupidatat laborum sint\",\n    \"mollit_634\": -31441498\n  }\n}",
+              "createdAt": "2026-07-28T03:22:38.000Z",
+              "updatedAt": "2026-07-28T03:22:38.000Z",
+              "uid": "35240-65d8a99f-10af-4043-8d8f-dd9e9c84a56a"
+            }
+          ],
+          "createdAt": "2026-07-28T03:22:38.000Z",
+          "updatedAt": "2026-07-28T03:22:38.000Z",
+          "uid": "35240-78acde84-00da-4776-a8e2-c34100efc41e"
+        },
+        {
+          "name": "Update log entries",
+          "id": "4f3f7184-1d8e-4187-9823-190da667fee6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tempor690\": -71079861.9615141\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/logs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "logs"
+              ]
+            },
+            "description": "Update existing log entries."
+          },
+          "response": [
+            {
+              "id": "c5d62024-c152-466d-a493-84a5df3f0f60",
+              "name": "Logs updated",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tempor690\": -71079861.9615141\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/logs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "logs"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T03:22:38.000Z",
+              "updatedAt": "2026-07-28T03:22:38.000Z",
+              "uid": "35240-c5d62024-c152-466d-a493-84a5df3f0f60"
+            }
+          ],
+          "createdAt": "2026-07-28T03:22:38.000Z",
+          "updatedAt": "2026-07-28T03:22:38.000Z",
+          "uid": "35240-4f3f7184-1d8e-4187-9823-190da667fee6"
+        },
+        {
+          "name": "Delete log entries",
+          "id": "f51b36dc-e2e5-42f3-a7a9-003537a1dbe6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/logs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "logs"
+              ]
+            },
+            "description": "Delete log entries matching the given filter."
+          },
+          "response": [
+            {
+              "id": "66a66066-34f1-49e0-bbfa-ad2620fd3fc3",
+              "name": "Logs deleted",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/logs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "logs"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T03:22:38.000Z",
+              "updatedAt": "2026-07-28T03:22:38.000Z",
+              "uid": "35240-66a66066-34f1-49e0-bbfa-ad2620fd3fc3"
+            }
+          ],
+          "createdAt": "2026-07-28T03:22:38.000Z",
+          "updatedAt": "2026-07-28T03:22:38.000Z",
+          "uid": "35240-f51b36dc-e2e5-42f3-a7a9-003537a1dbe6"
+        }
+      ],
+      "id": "be5c7a63-c0d7-4263-880c-27888109380e",
+      "createdAt": "2026-07-28T03:22:38.000Z",
+      "updatedAt": "2026-07-28T03:22:38.000Z",
+      "uid": "35240-be5c7a63-c0d7-4263-880c-27888109380e"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.unify.ai/v0"
+    }
+  ]
+}

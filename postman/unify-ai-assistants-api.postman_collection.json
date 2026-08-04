@@ -1,0 +1,629 @@
+{
+  "info": {
+    "_postman_id": "e4233a9e-6b63-4079-8f1e-2f20beac27e8",
+    "name": "Unify Universal Agent Assistants API",
+    "description": "The Unify Universal API provides a unified REST interface for the Unify platform's LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.\n\n\nContact Support:\n Name: Unify",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:22:35.000Z",
+    "updatedAt": "2026-07-28T03:22:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e4233a9e-6b63-4079-8f1e-2f20beac27e8"
+  },
+  "item": [
+    {
+      "name": "assistant",
+      "item": [
+        {
+          "name": "{assistant_id}",
+          "item": [
+            {
+              "name": "config",
+              "item": [
+                {
+                  "name": "Update assistant config",
+                  "id": "e40ab4f9-1497-4f19-94de-ccd8aab3e773",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"magna6bb\": 34643972,\n  \"adipisicing__3\": -99925719,\n  \"qui_42_\": false,\n  \"adipisicing20\": -30614564\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/assistant/:assistant_id/config",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assistant",
+                        ":assistant_id",
+                        "config"
+                      ],
+                      "variable": [
+                        {
+                          "id": "364cb39b-d621-433d-8502-99f3d3a4911c",
+                          "key": "assistant_id",
+                          "value": "<integer>",
+                          "description": "(Required) Assistant identifier"
+                        }
+                      ]
+                    },
+                    "description": "Update an assistant's editable configuration fields."
+                  },
+                  "response": [
+                    {
+                      "id": "b92d834d-30d2-40fb-a305-93d9db9ddd2a",
+                      "name": "Assistant config updated",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"magna6bb\": 34643972,\n  \"adipisicing__3\": -99925719,\n  \"qui_42_\": false,\n  \"adipisicing20\": -30614564\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/assistant/:assistant_id/config",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "assistant",
+                            ":assistant_id",
+                            "config"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assistant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"surname\": \"<string>\",\n  \"config\": {\n    \"nostrud_55\": -6957169.696430117,\n    \"enim2b9\": 17784674\n  }\n}",
+                      "createdAt": "2026-07-28T03:22:35.000Z",
+                      "updatedAt": "2026-07-28T03:22:35.000Z",
+                      "uid": "35240-b92d834d-30d2-40fb-a305-93d9db9ddd2a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:35.000Z",
+                  "updatedAt": "2026-07-28T03:22:35.000Z",
+                  "uid": "35240-e40ab4f9-1497-4f19-94de-ccd8aab3e773"
+                }
+              ],
+              "id": "621d75be-35da-47e5-9e10-4602c5446e1c",
+              "createdAt": "2026-07-28T03:22:35.000Z",
+              "updatedAt": "2026-07-28T03:22:35.000Z",
+              "uid": "35240-621d75be-35da-47e5-9e10-4602c5446e1c"
+            },
+            {
+              "name": "Delete an assistant",
+              "id": "229fbff6-3759-4b6f-b473-9e9510d531fa",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/assistant/:assistant_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assistant",
+                    ":assistant_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "7670b6b9-6af5-4e94-b4b2-4d81773c1ca3",
+                      "key": "assistant_id",
+                      "value": "<integer>",
+                      "description": "(Required) Assistant identifier"
+                    }
+                  ]
+                },
+                "description": "Delete an assistant that the caller can manage."
+              },
+              "response": [
+                {
+                  "id": "90ad6e05-3814-4eb6-b828-9a9ecd9dfa0f",
+                  "name": "Assistant deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assistant/:assistant_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assistant",
+                        ":assistant_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:22:35.000Z",
+                  "updatedAt": "2026-07-28T03:22:35.000Z",
+                  "uid": "35240-90ad6e05-3814-4eb6-b828-9a9ecd9dfa0f"
+                },
+                {
+                  "id": "fbb46e83-f4a7-4cc8-b100-af4a05428dac",
+                  "name": "Assistant not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assistant/:assistant_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assistant",
+                        ":assistant_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "assistant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:22:35.000Z",
+                  "updatedAt": "2026-07-28T03:22:35.000Z",
+                  "uid": "35240-fbb46e83-f4a7-4cc8-b100-af4a05428dac"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:35.000Z",
+              "updatedAt": "2026-07-28T03:22:35.000Z",
+              "uid": "35240-229fbff6-3759-4b6f-b473-9e9510d531fa"
+            }
+          ],
+          "id": "fbd5e9c6-b959-4321-8fcc-e78c4fa4bcc9",
+          "createdAt": "2026-07-28T03:22:35.000Z",
+          "updatedAt": "2026-07-28T03:22:35.000Z",
+          "uid": "35240-fbd5e9c6-b959-4321-8fcc-e78c4fa4bcc9"
+        },
+        {
+          "name": "{target_assistant_id}",
+          "item": [
+            {
+              "name": "preseed",
+              "item": [
+                {
+                  "name": "Preseed an assistant",
+                  "id": "e1d820d5-f8e8-43da-96e8-a8ed9096274a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"labore2\": false,\n  \"pariatur6a\": -45797309.72778404,\n  \"sunt_5b4\": 80442030\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/assistant/:target_assistant_id/preseed",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assistant",
+                        ":target_assistant_id",
+                        "preseed"
+                      ],
+                      "variable": [
+                        {
+                          "id": "56b6068d-a0c8-4efa-a519-5d75a64f52b0",
+                          "key": "target_assistant_id",
+                          "value": "<integer>",
+                          "description": "(Required) Target assistant identifier"
+                        }
+                      ]
+                    },
+                    "description": "Pre-populate an assistant with initial data or configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "8e0bb81a-3b04-474f-aa9b-0792eb8f393a",
+                      "name": "Assistant preseeded",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"labore2\": false,\n  \"pariatur6a\": -45797309.72778404,\n  \"sunt_5b4\": 80442030\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/assistant/:target_assistant_id/preseed",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "assistant",
+                            ":target_assistant_id",
+                            "preseed"
+                          ],
+                          "variable": [
+                            {
+                              "key": "target_assistant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:22:35.000Z",
+                      "updatedAt": "2026-07-28T03:22:35.000Z",
+                      "uid": "35240-8e0bb81a-3b04-474f-aa9b-0792eb8f393a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:35.000Z",
+                  "updatedAt": "2026-07-28T03:22:35.000Z",
+                  "uid": "35240-e1d820d5-f8e8-43da-96e8-a8ed9096274a"
+                }
+              ],
+              "id": "e6a152a5-4694-4905-ae20-31fcf0117df2",
+              "createdAt": "2026-07-28T03:22:35.000Z",
+              "updatedAt": "2026-07-28T03:22:35.000Z",
+              "uid": "35240-e6a152a5-4694-4905-ae20-31fcf0117df2"
+            }
+          ],
+          "id": "cfc2de9e-c1ef-434c-9069-690866f17ff0",
+          "createdAt": "2026-07-28T03:22:35.000Z",
+          "updatedAt": "2026-07-28T03:22:35.000Z",
+          "uid": "35240-cfc2de9e-c1ef-434c-9069-690866f17ff0"
+        },
+        {
+          "name": "Create an assistant",
+          "id": "4e999f82-850d-445c-a364-e42c7b7020af",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"<string>\",\n  \"surname\": \"<string>\",\n  \"config\": {\n    \"ex_d\": -5170002.898595169,\n    \"exercitationd55\": \"dolore ex amet tempor sint\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/assistant",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "assistant"
+              ]
+            },
+            "description": "Create a new assistant in the caller's active workspace."
+          },
+          "response": [
+            {
+              "id": "7b979d1e-4a9b-4b42-b08e-c7a2962ba5a0",
+              "name": "Assistant created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"<string>\",\n  \"surname\": \"<string>\",\n  \"config\": {\n    \"ex_d\": -5170002.898595169,\n    \"exercitationd55\": \"dolore ex amet tempor sint\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/assistant",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assistant"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"surname\": \"<string>\",\n  \"config\": {\n    \"nostrud_55\": -6957169.696430117,\n    \"enim2b9\": 17784674\n  }\n}",
+              "createdAt": "2026-07-28T03:22:35.000Z",
+              "updatedAt": "2026-07-28T03:22:35.000Z",
+              "uid": "35240-7b979d1e-4a9b-4b42-b08e-c7a2962ba5a0"
+            }
+          ],
+          "createdAt": "2026-07-28T03:22:35.000Z",
+          "updatedAt": "2026-07-28T03:22:35.000Z",
+          "uid": "35240-4e999f82-850d-445c-a364-e42c7b7020af"
+        },
+        {
+          "name": "List assistants",
+          "id": "33746d58-f8f0-437a-94ac-8c90ae19968d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/assistant?phone=<string>&email=<email>&agent_id=<integer>&list_all_org=false",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "assistant"
+              ],
+              "query": [
+                {
+                  "description": "Filter by phone number",
+                  "key": "phone",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by email address",
+                  "key": "email",
+                  "value": "<email>"
+                },
+                {
+                  "description": "Filter by assistant identifier",
+                  "key": "agent_id",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "List all assistants in the organization",
+                  "key": "list_all_org",
+                  "value": "false"
+                }
+              ]
+            },
+            "description": "List assistants visible to the caller."
+          },
+          "response": [
+            {
+              "id": "d224ed9b-a8d0-4b9f-a804-c4fc745836d6",
+              "name": "List of assistants",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/assistant?phone=<string>&email=<email>&agent_id=<integer>&list_all_org=false",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assistant"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by phone number",
+                      "key": "phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by email address",
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "description": "Filter by assistant identifier",
+                      "key": "agent_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "List all assistants in the organization",
+                      "key": "list_all_org",
+                      "value": "false"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"first_name\": \"<string>\",\n    \"surname\": \"<string>\",\n    \"config\": {\n      \"culpa8d\": 52377865.21432671,\n      \"sint944\": true\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"first_name\": \"<string>\",\n    \"surname\": \"<string>\",\n    \"config\": {\n      \"ametb80\": -30924319.811437592,\n      \"adipisicing3a\": -67013341.9424475,\n      \"commodoba\": \"ut\"\n    }\n  }\n]",
+              "createdAt": "2026-07-28T03:22:35.000Z",
+              "updatedAt": "2026-07-28T03:22:35.000Z",
+              "uid": "35240-d224ed9b-a8d0-4b9f-a804-c4fc745836d6"
+            }
+          ],
+          "createdAt": "2026-07-28T03:22:35.000Z",
+          "updatedAt": "2026-07-28T03:22:35.000Z",
+          "uid": "35240-33746d58-f8f0-437a-94ac-8c90ae19968d"
+        }
+      ],
+      "id": "855645a6-cb42-4eae-8fee-fb5b4d783bb8",
+      "createdAt": "2026-07-28T03:22:35.000Z",
+      "updatedAt": "2026-07-28T03:22:35.000Z",
+      "uid": "35240-855645a6-cb42-4eae-8fee-fb5b4d783bb8"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.unify.ai/v0"
+    }
+  ]
+}

@@ -1,0 +1,323 @@
+{
+  "info": {
+    "_postman_id": "2d57c654-0c3c-4e90-9b1a-cd1842fdc611",
+    "name": "Unify Universal Agent API",
+    "description": "The Unify Universal API provides a unified REST interface for the Unify platform's LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.\n\n\nContact Support:\n Name: Unify",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:22:34.000Z",
+    "updatedAt": "2026-07-28T03:22:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2d57c654-0c3c-4e90-9b1a-cd1842fdc611"
+  },
+  "item": [
+    {
+      "name": "messages",
+      "item": [
+        {
+          "name": "{message_id}",
+          "item": [
+            {
+              "name": "Get a message",
+              "id": "42a2e097-4059-4526-9e5e-ffb8d09c4b9c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/messages/:message_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "messages",
+                    ":message_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d969eb56-28e6-4f3c-b0d5-a3c5a279f714",
+                      "key": "message_id",
+                      "value": "<integer>",
+                      "description": "(Required) Message identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve a specific message by its identifier."
+              },
+              "response": [
+                {
+                  "id": "b2a06c45-f623-44c4-b030-911a34a4a6d9",
+                  "name": "Message record",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/messages/:message_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "messages",
+                        ":message_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "message_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"role\": \"system\",\n  \"content\": \"<string>\",\n  \"ts\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T03:22:34.000Z",
+                  "updatedAt": "2026-07-28T03:22:34.000Z",
+                  "uid": "35240-b2a06c45-f623-44c4-b030-911a34a4a6d9"
+                },
+                {
+                  "id": "66e3f673-34e3-4ed7-a856-ff5b3aa8c696",
+                  "name": "Message not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/messages/:message_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "messages",
+                        ":message_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "message_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:22:34.000Z",
+                  "updatedAt": "2026-07-28T03:22:34.000Z",
+                  "uid": "35240-66e3f673-34e3-4ed7-a856-ff5b3aa8c696"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:34.000Z",
+              "updatedAt": "2026-07-28T03:22:34.000Z",
+              "uid": "35240-42a2e097-4059-4526-9e5e-ffb8d09c4b9c"
+            }
+          ],
+          "id": "7ecb0ff1-5f6c-4654-a4bf-ef5831c0ef3b",
+          "createdAt": "2026-07-28T03:22:34.000Z",
+          "updatedAt": "2026-07-28T03:22:34.000Z",
+          "uid": "35240-7ecb0ff1-5f6c-4654-a4bf-ef5831c0ef3b"
+        },
+        {
+          "name": "Send a message",
+          "id": "25b9a372-d77e-4589-9746-c51bb22f19d6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assistant_id\": \"<integer>\",\n  \"content\": \"<string>\",\n  \"role\": \"user\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/messages",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "messages"
+              ]
+            },
+            "description": "Send a message to an assistant and receive a response."
+          },
+          "response": [
+            {
+              "id": "c4e288d0-905c-4deb-b7b9-787026e0b327",
+              "name": "Message sent and response received",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assistant_id\": \"<integer>\",\n  \"content\": \"<string>\",\n  \"role\": \"user\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/messages",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "messages"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<integer>\",\n  \"role\": \"system\",\n  \"content\": \"<string>\",\n  \"ts\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T03:22:34.000Z",
+              "updatedAt": "2026-07-28T03:22:34.000Z",
+              "uid": "35240-c4e288d0-905c-4deb-b7b9-787026e0b327"
+            },
+            {
+              "id": "e74109ea-8ff9-4012-bf41-26fc9383a584",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assistant_id\": \"<integer>\",\n  \"content\": \"<string>\",\n  \"role\": \"user\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/messages",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "messages"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T03:22:34.000Z",
+              "updatedAt": "2026-07-28T03:22:34.000Z",
+              "uid": "35240-e74109ea-8ff9-4012-bf41-26fc9383a584"
+            }
+          ],
+          "createdAt": "2026-07-28T03:22:34.000Z",
+          "updatedAt": "2026-07-28T03:22:34.000Z",
+          "uid": "35240-25b9a372-d77e-4589-9746-c51bb22f19d6"
+        }
+      ],
+      "id": "b9e35a37-05c5-4b0e-b628-5f32f4cfbc4b",
+      "createdAt": "2026-07-28T03:22:34.000Z",
+      "updatedAt": "2026-07-28T03:22:34.000Z",
+      "uid": "35240-b9e35a37-05c5-4b0e-b628-5f32f4cfbc4b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.unify.ai/v0"
+    }
+  ]
+}

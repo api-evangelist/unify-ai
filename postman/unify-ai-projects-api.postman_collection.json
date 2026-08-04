@@ -1,0 +1,816 @@
+{
+  "info": {
+    "_postman_id": "e879f372-99f2-4c63-ae5e-6404f17e2453",
+    "name": "Unify Universal Agent Projects API",
+    "description": "The Unify Universal API provides a unified REST interface for the Unify platform's LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.\n\n\nContact Support:\n Name: Unify",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:22:42.000Z",
+    "updatedAt": "2026-07-28T03:22:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e879f372-99f2-4c63-ae5e-6404f17e2453"
+  },
+  "item": [
+    {
+      "name": "project",
+      "item": [
+        {
+          "name": "{name}",
+          "item": [
+            {
+              "name": "contexts",
+              "item": [
+                {
+                  "name": "Delete all project contexts",
+                  "id": "f04b5667-b805-42e1-8a75-c938f704079f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/project/:name/contexts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "project",
+                        ":name",
+                        "contexts"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e8148d29-930f-48d5-a1fa-c16196091003",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) Project name"
+                        }
+                      ]
+                    },
+                    "description": "Delete all contexts belonging to a project."
+                  },
+                  "response": [
+                    {
+                      "id": "ac6b5d4c-2e6a-44ab-96a4-ad40f7ccb5c7",
+                      "name": "All contexts deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/project/:name/contexts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "project",
+                            ":name",
+                            "contexts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:22:43.000Z",
+                      "updatedAt": "2026-07-28T03:22:43.000Z",
+                      "uid": "35240-ac6b5d4c-2e6a-44ab-96a4-ad40f7ccb5c7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:43.000Z",
+                  "updatedAt": "2026-07-28T03:22:43.000Z",
+                  "uid": "35240-f04b5667-b805-42e1-8a75-c938f704079f"
+                }
+              ],
+              "id": "a9c6600d-3829-47e0-b8f5-1cd2e8b3db39",
+              "createdAt": "2026-07-28T03:22:43.000Z",
+              "updatedAt": "2026-07-28T03:22:43.000Z",
+              "uid": "35240-a9c6600d-3829-47e0-b8f5-1cd2e8b3db39"
+            },
+            {
+              "name": "commit",
+              "item": [
+                {
+                  "name": "Commit a project snapshot",
+                  "id": "cb26f08c-c9cd-4231-a062-09048e436dc5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"message\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/project/:name/commit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "project",
+                        ":name",
+                        "commit"
+                      ],
+                      "variable": [
+                        {
+                          "id": "1e5ebf26-6b33-4971-a900-feae3ce681f9",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) Project name"
+                        }
+                      ]
+                    },
+                    "description": "Save a versioned snapshot (commit) of the project state."
+                  },
+                  "response": [
+                    {
+                      "id": "89751476-99a3-47a1-be0f-ce1f36b32b0e",
+                      "name": "Commit created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"message\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/project/:name/commit",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "project",
+                            ":name",
+                            "commit"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"ts\": \"<dateTime>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:43.000Z",
+                      "updatedAt": "2026-07-28T03:22:43.000Z",
+                      "uid": "35240-89751476-99a3-47a1-be0f-ce1f36b32b0e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:43.000Z",
+                  "updatedAt": "2026-07-28T03:22:43.000Z",
+                  "uid": "35240-cb26f08c-c9cd-4231-a062-09048e436dc5"
+                }
+              ],
+              "id": "15de8f96-266a-44c3-aed7-e4b246f3736b",
+              "createdAt": "2026-07-28T03:22:43.000Z",
+              "updatedAt": "2026-07-28T03:22:43.000Z",
+              "uid": "35240-15de8f96-266a-44c3-aed7-e4b246f3736b"
+            },
+            {
+              "name": "rollback",
+              "item": [
+                {
+                  "name": "Rollback a project",
+                  "id": "694fa6a2-fb29-46b3-9a8b-2e569b1338ce",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"commit_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/project/:name/rollback",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "project",
+                        ":name",
+                        "rollback"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5067270b-8e96-49e9-87df-0c6867291702",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) Project name"
+                        }
+                      ]
+                    },
+                    "description": "Restore the project to a previous commit snapshot."
+                  },
+                  "response": [
+                    {
+                      "id": "436160ef-77f4-4ed5-8a12-21bfcd909cb9",
+                      "name": "Project rolled back",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"commit_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/project/:name/rollback",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "project",
+                            ":name",
+                            "rollback"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:22:43.000Z",
+                      "updatedAt": "2026-07-28T03:22:43.000Z",
+                      "uid": "35240-436160ef-77f4-4ed5-8a12-21bfcd909cb9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:43.000Z",
+                  "updatedAt": "2026-07-28T03:22:43.000Z",
+                  "uid": "35240-694fa6a2-fb29-46b3-9a8b-2e569b1338ce"
+                }
+              ],
+              "id": "703197fa-20f0-4ee9-86dc-5594de34b548",
+              "createdAt": "2026-07-28T03:22:43.000Z",
+              "updatedAt": "2026-07-28T03:22:43.000Z",
+              "uid": "35240-703197fa-20f0-4ee9-86dc-5594de34b548"
+            },
+            {
+              "name": "commits",
+              "item": [
+                {
+                  "name": "Get project commits",
+                  "id": "683e034f-8d17-4a5e-8bab-3779fda549e5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/project/:name/commits",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "project",
+                        ":name",
+                        "commits"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0d1b1282-f6ee-4dba-a7d0-7851142d615c",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) Project name"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve the list of commits for a project."
+                  },
+                  "response": [
+                    {
+                      "id": "cc54fc8c-9eb6-4742-adf5-d10f5ddfa519",
+                      "name": "List of commits",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/project/:name/commits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "project",
+                            ":name",
+                            "commits"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"ts\": \"<dateTime>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"ts\": \"<dateTime>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-07-28T03:22:43.000Z",
+                      "updatedAt": "2026-07-28T03:22:43.000Z",
+                      "uid": "35240-cc54fc8c-9eb6-4742-adf5-d10f5ddfa519"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:43.000Z",
+                  "updatedAt": "2026-07-28T03:22:43.000Z",
+                  "uid": "35240-683e034f-8d17-4a5e-8bab-3779fda549e5"
+                }
+              ],
+              "id": "e2fb5cc0-7a19-4f55-9175-e778c37b26d6",
+              "createdAt": "2026-07-28T03:22:43.000Z",
+              "updatedAt": "2026-07-28T03:22:43.000Z",
+              "uid": "35240-e2fb5cc0-7a19-4f55-9175-e778c37b26d6"
+            },
+            {
+              "name": "Delete a project",
+              "id": "6800c83b-5266-4179-bc07-d0e68ba3c30f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/project/:name",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "project",
+                    ":name"
+                  ],
+                  "variable": [
+                    {
+                      "id": "25ba6153-5c0d-4790-b8fb-513ae855134d",
+                      "key": "name",
+                      "value": "<string>",
+                      "description": "(Required) Project name"
+                    }
+                  ]
+                },
+                "description": "Permanently delete a project by name."
+              },
+              "response": [
+                {
+                  "id": "c127926b-8447-415e-b357-86dfae12d21f",
+                  "name": "Project deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/project/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "project",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:22:43.000Z",
+                  "updatedAt": "2026-07-28T03:22:43.000Z",
+                  "uid": "35240-c127926b-8447-415e-b357-86dfae12d21f"
+                },
+                {
+                  "id": "8687d718-545b-4bdb-bac3-137c70dcfb79",
+                  "name": "Project not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/project/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "project",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "name"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:22:43.000Z",
+                  "updatedAt": "2026-07-28T03:22:43.000Z",
+                  "uid": "35240-8687d718-545b-4bdb-bac3-137c70dcfb79"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:43.000Z",
+              "updatedAt": "2026-07-28T03:22:43.000Z",
+              "uid": "35240-6800c83b-5266-4179-bc07-d0e68ba3c30f"
+            }
+          ],
+          "id": "0be1e184-d5a5-4dd9-a89b-c38c85f5a43d",
+          "createdAt": "2026-07-28T03:22:43.000Z",
+          "updatedAt": "2026-07-28T03:22:43.000Z",
+          "uid": "35240-0be1e184-d5a5-4dd9-a89b-c38c85f5a43d"
+        },
+        {
+          "name": "Create a project",
+          "id": "5e312047-fa0a-4f22-be8f-3159e24b4696",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"overwrite\": false\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/project",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "project"
+              ]
+            },
+            "description": "Create a new project in the authenticated user's workspace."
+          },
+          "response": [
+            {
+              "id": "c726269a-e624-4d22-a669-cfc50dd79315",
+              "name": "Project created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/project",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "project"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"name\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:22:43.000Z",
+              "updatedAt": "2026-07-28T03:22:43.000Z",
+              "uid": "35240-c726269a-e624-4d22-a669-cfc50dd79315"
+            },
+            {
+              "id": "081f3c63-93fe-4f67-98fd-d4920f67dc08",
+              "name": "Project already exists",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/project",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "project"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T03:22:43.000Z",
+              "updatedAt": "2026-07-28T03:22:43.000Z",
+              "uid": "35240-081f3c63-93fe-4f67-98fd-d4920f67dc08"
+            }
+          ],
+          "createdAt": "2026-07-28T03:22:43.000Z",
+          "updatedAt": "2026-07-28T03:22:43.000Z",
+          "uid": "35240-5e312047-fa0a-4f22-be8f-3159e24b4696"
+        }
+      ],
+      "id": "80f13780-5ce4-4fa5-85dd-5662f63ceaee",
+      "createdAt": "2026-07-28T03:22:43.000Z",
+      "updatedAt": "2026-07-28T03:22:43.000Z",
+      "uid": "35240-80f13780-5ce4-4fa5-85dd-5662f63ceaee"
+    },
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "List projects",
+          "id": "d55eb90f-b0c1-471e-8e46-8f0c9e6e2db0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projects",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects"
+              ]
+            },
+            "description": "List all projects visible to the authenticated user."
+          },
+          "response": [
+            {
+              "id": "bbc5bc26-e516-4433-9bf7-085e1b3edaca",
+              "name": "List of projects",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/projects",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"name\": \"<string>\"\n  },\n  {\n    \"name\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-07-28T03:22:43.000Z",
+              "updatedAt": "2026-07-28T03:22:43.000Z",
+              "uid": "35240-bbc5bc26-e516-4433-9bf7-085e1b3edaca"
+            }
+          ],
+          "createdAt": "2026-07-28T03:22:43.000Z",
+          "updatedAt": "2026-07-28T03:22:43.000Z",
+          "uid": "35240-d55eb90f-b0c1-471e-8e46-8f0c9e6e2db0"
+        }
+      ],
+      "id": "938127fd-0944-4738-b3b5-b2aab04e0b46",
+      "createdAt": "2026-07-28T03:22:43.000Z",
+      "updatedAt": "2026-07-28T03:22:43.000Z",
+      "uid": "35240-938127fd-0944-4738-b3b5-b2aab04e0b46"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.unify.ai/v0"
+    }
+  ]
+}

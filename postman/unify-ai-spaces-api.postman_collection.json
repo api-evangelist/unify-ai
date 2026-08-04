@@ -1,0 +1,882 @@
+{
+  "info": {
+    "_postman_id": "243bc6e6-7154-4a7e-957c-bad8cd321af2",
+    "name": "Unify Universal Agent Spaces API",
+    "description": "The Unify Universal API provides a unified REST interface for the Unify platform's LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.\n\n\nContact Support:\n Name: Unify",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:22:43.000Z",
+    "updatedAt": "2026-07-28T03:22:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-243bc6e6-7154-4a7e-957c-bad8cd321af2"
+  },
+  "item": [
+    {
+      "name": "spaces",
+      "item": [
+        {
+          "name": "{space_id}",
+          "item": [
+            {
+              "name": "members",
+              "item": [
+                {
+                  "name": "{assistant_id}",
+                  "item": [
+                    {
+                      "name": "Remove space member",
+                      "id": "4bd29246-3954-4530-8693-d8d36a583d57",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/spaces/:space_id/members/:assistant_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "spaces",
+                            ":space_id",
+                            "members",
+                            ":assistant_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "58d19ff0-3abe-452b-ba43-f8a336a814c0",
+                              "key": "space_id",
+                              "value": "<integer>",
+                              "description": "(Required) Space identifier"
+                            },
+                            {
+                              "id": "b1e6a7af-9ade-4765-9c1e-40c3215df180",
+                              "key": "assistant_id",
+                              "value": "<integer>",
+                              "description": "(Required) Assistant identifier"
+                            }
+                          ]
+                        },
+                        "description": "Remove an assistant from a space."
+                      },
+                      "response": [
+                        {
+                          "id": "f457ed8d-2088-4410-b162-2b2981e94c21",
+                          "name": "Member removed",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/spaces/:space_id/members/:assistant_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "spaces",
+                                ":space_id",
+                                "members",
+                                ":assistant_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "space_id"
+                                },
+                                {
+                                  "key": "assistant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:22:44.000Z",
+                          "updatedAt": "2026-07-28T03:22:44.000Z",
+                          "uid": "35240-f457ed8d-2088-4410-b162-2b2981e94c21"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:22:44.000Z",
+                      "updatedAt": "2026-07-28T03:22:44.000Z",
+                      "uid": "35240-4bd29246-3954-4530-8693-d8d36a583d57"
+                    }
+                  ],
+                  "id": "f2438c80-cefd-4303-9df1-7cc9bc29c5e5",
+                  "createdAt": "2026-07-28T03:22:44.000Z",
+                  "updatedAt": "2026-07-28T03:22:44.000Z",
+                  "uid": "35240-f2438c80-cefd-4303-9df1-7cc9bc29c5e5"
+                },
+                {
+                  "name": "Add space member",
+                  "id": "81b2530f-9cb6-4990-acdd-34b88903c345",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"assistant_id\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/spaces/:space_id/members",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "spaces",
+                        ":space_id",
+                        "members"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ea18b069-6501-4d82-bb59-9d402b3c069b",
+                          "key": "space_id",
+                          "value": "<integer>",
+                          "description": "(Required) Space identifier"
+                        }
+                      ]
+                    },
+                    "description": "Add an assistant as a member of a space."
+                  },
+                  "response": [
+                    {
+                      "id": "771f90d5-5e86-4ac8-9663-55c0cde287e6",
+                      "name": "Member added",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"assistant_id\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/spaces/:space_id/members",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "spaces",
+                            ":space_id",
+                            "members"
+                          ],
+                          "variable": [
+                            {
+                              "key": "space_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:22:44.000Z",
+                      "updatedAt": "2026-07-28T03:22:44.000Z",
+                      "uid": "35240-771f90d5-5e86-4ac8-9663-55c0cde287e6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:44.000Z",
+                  "updatedAt": "2026-07-28T03:22:44.000Z",
+                  "uid": "35240-81b2530f-9cb6-4990-acdd-34b88903c345"
+                },
+                {
+                  "name": "List space members",
+                  "id": "bed96619-2ba1-4f1d-95fd-219d09ec345a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/spaces/:space_id/members",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "spaces",
+                        ":space_id",
+                        "members"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f41b2abb-0cda-4148-aa79-4856d2d2240b",
+                          "key": "space_id",
+                          "value": "<integer>",
+                          "description": "(Required) Space identifier"
+                        }
+                      ]
+                    },
+                    "description": "List all assistants who are members of a space."
+                  },
+                  "response": [
+                    {
+                      "id": "7e4ef572-6aa1-403d-9e17-814706abbb6a",
+                      "name": "List of space members",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/spaces/:space_id/members",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "spaces",
+                            ":space_id",
+                            "members"
+                          ],
+                          "variable": [
+                            {
+                              "key": "space_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"first_name\": \"<string>\",\n    \"surname\": \"<string>\",\n    \"config\": {\n      \"do_a7\": true\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"first_name\": \"<string>\",\n    \"surname\": \"<string>\",\n    \"config\": {\n      \"cillum_83\": -55128850\n    }\n  }\n]",
+                      "createdAt": "2026-07-28T03:22:44.000Z",
+                      "updatedAt": "2026-07-28T03:22:44.000Z",
+                      "uid": "35240-7e4ef572-6aa1-403d-9e17-814706abbb6a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:44.000Z",
+                  "updatedAt": "2026-07-28T03:22:44.000Z",
+                  "uid": "35240-bed96619-2ba1-4f1d-95fd-219d09ec345a"
+                }
+              ],
+              "id": "1339dcec-5d87-466c-adab-faaeebbb816a",
+              "createdAt": "2026-07-28T03:22:44.000Z",
+              "updatedAt": "2026-07-28T03:22:44.000Z",
+              "uid": "35240-1339dcec-5d87-466c-adab-faaeebbb816a"
+            },
+            {
+              "name": "Update a space",
+              "id": "d952e9ef-dbfa-4419-b9d9-b3309df6fd23",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"proident993\": -74438963\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/spaces/:space_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "spaces",
+                    ":space_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3622c5dd-f4bf-46d6-ace4-8dbbca85fc65",
+                      "key": "space_id",
+                      "value": "<integer>",
+                      "description": "(Required) Space identifier"
+                    }
+                  ]
+                },
+                "description": "Update the configuration of an existing space."
+              },
+              "response": [
+                {
+                  "id": "f23ef2d8-daa9-4b61-91a0-ca89fd09feae",
+                  "name": "Space updated",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"proident993\": -74438963\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/spaces/:space_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "spaces",
+                        ":space_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "space_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"config\": {\n    \"ea_4\": \"minim dolore\",\n    \"consectetur_4\": -58003618,\n    \"Lorem_e17\": \"veniam nulla Lorem labore\",\n    \"ut25d\": -39125541.993084446\n  }\n}",
+                  "createdAt": "2026-07-28T03:22:44.000Z",
+                  "updatedAt": "2026-07-28T03:22:44.000Z",
+                  "uid": "35240-f23ef2d8-daa9-4b61-91a0-ca89fd09feae"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:44.000Z",
+              "updatedAt": "2026-07-28T03:22:44.000Z",
+              "uid": "35240-d952e9ef-dbfa-4419-b9d9-b3309df6fd23"
+            },
+            {
+              "name": "Delete a space",
+              "id": "b3a17557-a8f1-4ef1-9465-467148ca7b8f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/spaces/:space_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "spaces",
+                    ":space_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "bfd2d923-b8e4-41ec-8cec-6102af98e79f",
+                      "key": "space_id",
+                      "value": "<integer>",
+                      "description": "(Required) Space identifier"
+                    }
+                  ]
+                },
+                "description": "Delete a space by its identifier."
+              },
+              "response": [
+                {
+                  "id": "20f8f27a-bafb-46e9-8d79-f62e5d7fdb15",
+                  "name": "Space deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/spaces/:space_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "spaces",
+                        ":space_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "space_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:22:44.000Z",
+                  "updatedAt": "2026-07-28T03:22:44.000Z",
+                  "uid": "35240-20f8f27a-bafb-46e9-8d79-f62e5d7fdb15"
+                },
+                {
+                  "id": "244bfed3-ce5d-469b-9f8a-b437e288c873",
+                  "name": "Space not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/spaces/:space_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "spaces",
+                        ":space_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "space_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:22:44.000Z",
+                  "updatedAt": "2026-07-28T03:22:44.000Z",
+                  "uid": "35240-244bfed3-ce5d-469b-9f8a-b437e288c873"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:44.000Z",
+              "updatedAt": "2026-07-28T03:22:44.000Z",
+              "uid": "35240-b3a17557-a8f1-4ef1-9465-467148ca7b8f"
+            }
+          ],
+          "id": "7aed36a7-de16-49e9-83b4-df7add618e51",
+          "createdAt": "2026-07-28T03:22:44.000Z",
+          "updatedAt": "2026-07-28T03:22:44.000Z",
+          "uid": "35240-7aed36a7-de16-49e9-83b4-df7add618e51"
+        },
+        {
+          "name": "Create a space",
+          "id": "02feb50f-8b50-42f8-9ac5-c20f81cf3b68",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"config\": {\n    \"Duis02\": true\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/spaces",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "spaces"
+              ]
+            },
+            "description": "Create a new collaboration space."
+          },
+          "response": [
+            {
+              "id": "96fa44a7-9f6a-42d4-9314-b578738d0b9d",
+              "name": "Space created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"config\": {\n    \"Duis02\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/spaces",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "spaces"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"config\": {\n    \"ea_4\": \"minim dolore\",\n    \"consectetur_4\": -58003618,\n    \"Lorem_e17\": \"veniam nulla Lorem labore\",\n    \"ut25d\": -39125541.993084446\n  }\n}",
+              "createdAt": "2026-07-28T03:22:44.000Z",
+              "updatedAt": "2026-07-28T03:22:44.000Z",
+              "uid": "35240-96fa44a7-9f6a-42d4-9314-b578738d0b9d"
+            }
+          ],
+          "createdAt": "2026-07-28T03:22:44.000Z",
+          "updatedAt": "2026-07-28T03:22:44.000Z",
+          "uid": "35240-02feb50f-8b50-42f8-9ac5-c20f81cf3b68"
+        },
+        {
+          "name": "List spaces",
+          "id": "9d45fee1-519e-4ce6-8ef3-501b57fa94fd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/spaces?assistant_id=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "spaces"
+              ],
+              "query": [
+                {
+                  "description": "Filter spaces by assistant membership",
+                  "key": "assistant_id",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "List all spaces visible to the authenticated user."
+          },
+          "response": [
+            {
+              "id": "2b879336-72ca-4c1c-ae51-bc360bf0f35f",
+              "name": "List of spaces",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/spaces?assistant_id=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "spaces"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter spaces by assistant membership",
+                      "key": "assistant_id",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"config\": {\n      \"tempor_455\": \"officia\"\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"config\": {\n      \"nostrud5\": \"cillum officia deserunt veniam Excep\"\n    }\n  }\n]",
+              "createdAt": "2026-07-28T03:22:44.000Z",
+              "updatedAt": "2026-07-28T03:22:44.000Z",
+              "uid": "35240-2b879336-72ca-4c1c-ae51-bc360bf0f35f"
+            }
+          ],
+          "createdAt": "2026-07-28T03:22:44.000Z",
+          "updatedAt": "2026-07-28T03:22:44.000Z",
+          "uid": "35240-9d45fee1-519e-4ce6-8ef3-501b57fa94fd"
+        }
+      ],
+      "id": "104f35c6-4bdc-4ab4-b6e2-8150745a4315",
+      "createdAt": "2026-07-28T03:22:44.000Z",
+      "updatedAt": "2026-07-28T03:22:44.000Z",
+      "uid": "35240-104f35c6-4bdc-4ab4-b6e2-8150745a4315"
+    },
+    {
+      "name": "assistants",
+      "item": [
+        {
+          "name": "{assistant_id}",
+          "item": [
+            {
+              "name": "spaces",
+              "item": [
+                {
+                  "name": "List spaces for an assistant",
+                  "id": "05c5d86d-6a96-4cc5-97d4-963858166232",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assistants/:assistant_id/spaces",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assistants",
+                        ":assistant_id",
+                        "spaces"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4e0e6ec6-cdb3-404d-b1e7-77e0638d245e",
+                          "key": "assistant_id",
+                          "value": "<integer>",
+                          "description": "(Required) Assistant identifier"
+                        }
+                      ]
+                    },
+                    "description": "List all spaces an assistant is a member of."
+                  },
+                  "response": [
+                    {
+                      "id": "3092d668-c4d1-4d96-b725-461a942e80a2",
+                      "name": "List of spaces",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/assistants/:assistant_id/spaces",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "assistants",
+                            ":assistant_id",
+                            "spaces"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assistant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"config\": {\n      \"tempor_455\": \"officia\"\n    }\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"config\": {\n      \"nostrud5\": \"cillum officia deserunt veniam Excep\"\n    }\n  }\n]",
+                      "createdAt": "2026-07-28T03:22:44.000Z",
+                      "updatedAt": "2026-07-28T03:22:44.000Z",
+                      "uid": "35240-3092d668-c4d1-4d96-b725-461a942e80a2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:44.000Z",
+                  "updatedAt": "2026-07-28T03:22:44.000Z",
+                  "uid": "35240-05c5d86d-6a96-4cc5-97d4-963858166232"
+                }
+              ],
+              "id": "1bc06ce3-c6ae-4324-aa2c-234b45975c5a",
+              "createdAt": "2026-07-28T03:22:44.000Z",
+              "updatedAt": "2026-07-28T03:22:44.000Z",
+              "uid": "35240-1bc06ce3-c6ae-4324-aa2c-234b45975c5a"
+            }
+          ],
+          "id": "89d37dd5-34b9-40c5-8274-82e32b1b44cd",
+          "createdAt": "2026-07-28T03:22:44.000Z",
+          "updatedAt": "2026-07-28T03:22:44.000Z",
+          "uid": "35240-89d37dd5-34b9-40c5-8274-82e32b1b44cd"
+        }
+      ],
+      "id": "8b3b924f-57b4-4c2b-ba40-8324e44f5a45",
+      "createdAt": "2026-07-28T03:22:44.000Z",
+      "updatedAt": "2026-07-28T03:22:44.000Z",
+      "uid": "35240-8b3b924f-57b4-4c2b-ba40-8324e44f5a45"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.unify.ai/v0"
+    }
+  ]
+}
