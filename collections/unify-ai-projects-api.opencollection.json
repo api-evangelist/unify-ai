@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Unify Universal Agent Projects API",
+    "version": "0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/project",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new project in the authenticated user's workspace."
+        },
+        {
+          "info": {
+            "name": "List projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unify.ai/v0/projects"
+          },
+          "docs": "List all projects visible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Delete a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.unify.ai/v0/project/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Project name"
+              }
+            ]
+          },
+          "docs": "Permanently delete a project by name."
+        },
+        {
+          "info": {
+            "name": "Delete all project contexts",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.unify.ai/v0/project/:name/contexts",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Project name"
+              }
+            ]
+          },
+          "docs": "Delete all contexts belonging to a project."
+        },
+        {
+          "info": {
+            "name": "Commit a project snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/project/:name/commit",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Project name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Save a versioned snapshot (commit) of the project state."
+        },
+        {
+          "info": {
+            "name": "Rollback a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/project/:name/rollback",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Project name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Restore the project to a previous commit snapshot."
+        },
+        {
+          "info": {
+            "name": "Get project commits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unify.ai/v0/project/:name/commits",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Project name"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of commits for a project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

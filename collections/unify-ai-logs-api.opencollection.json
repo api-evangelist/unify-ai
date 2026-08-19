@@ -1,0 +1,302 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Unify Universal Agent Logs API",
+    "version": "0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unify.ai/v0/logs",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project name"
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Filter by context path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ]
+          },
+          "docs": "Retrieve log entries with optional filtering."
+        },
+        {
+          "info": {
+            "name": "Create log entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/logs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create one or more new log entries."
+        },
+        {
+          "info": {
+            "name": "Update log entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.unify.ai/v0/logs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update existing log entries."
+        },
+        {
+          "info": {
+            "name": "Delete log entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.unify.ai/v0/logs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete log entries matching the given filter."
+        },
+        {
+          "info": {
+            "name": "List log fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unify.ai/v0/logs/fields",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get all field names present in the logs."
+        },
+        {
+          "info": {
+            "name": "Query log fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/logs/fields",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Query fields from logs using a filter body."
+        },
+        {
+          "info": {
+            "name": "Delete log fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.unify.ai/v0/logs/fields",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove specific fields from log entries."
+        },
+        {
+          "info": {
+            "name": "Rename a log field",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.unify.ai/v0/logs/fields/rename_field",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rename a field across all log entries in a project/context."
+        },
+        {
+          "info": {
+            "name": "Get log metric",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unify.ai/v0/logs/metric/:metric",
+            "params": [
+              {
+                "name": "metric",
+                "value": "",
+                "type": "path",
+                "description": "Metric name (e.g. mean, sum, count)"
+              },
+              {
+                "name": "field",
+                "value": "",
+                "type": "query",
+                "description": "Field to aggregate"
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a computed metric aggregated across log entries."
+        },
+        {
+          "info": {
+            "name": "Get log groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unify.ai/v0/logs/groups",
+            "params": [
+              {
+                "name": "group_by",
+                "value": "",
+                "type": "query",
+                "description": "Field to group by"
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve grouped log entries."
+        },
+        {
+          "info": {
+            "name": "Compute derived log fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/logs/derived",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Compute derived fields from existing log entries."
+        },
+        {
+          "info": {
+            "name": "Join logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/logs/join",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Join log entries from multiple contexts or projects."
+        },
+        {
+          "info": {
+            "name": "Join query logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/logs/join_query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a join query across log data sources."
+        },
+        {
+          "info": {
+            "name": "Atomic field update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.unify.ai/v0/logs/:log_id/fields/:key/atomic",
+            "params": [
+              {
+                "name": "log_id",
+                "value": "",
+                "type": "path",
+                "description": "Log entry identifier"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "Field key to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Atomically update a single field in a specific log entry."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

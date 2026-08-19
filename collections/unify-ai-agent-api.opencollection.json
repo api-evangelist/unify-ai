@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Unify Universal Agent API",
+    "version": "0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Agent",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send a message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a message to an assistant and receive a response."
+        },
+        {
+          "info": {
+            "name": "Get a message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unify.ai/v0/messages/:message_id",
+            "params": [
+              {
+                "name": "message_id",
+                "value": "",
+                "type": "path",
+                "description": "Message identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific message by its identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

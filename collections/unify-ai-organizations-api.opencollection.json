@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Unify Universal Agent Organizations API",
+    "version": "0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create organization invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/organizations/:organization_id/invites",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "Organization identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invite a user to join an organization."
+        },
+        {
+          "info": {
+            "name": "List organization members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unify.ai/v0/organizations/:organization_id/members",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "Organization identifier"
+              }
+            ]
+          },
+          "docs": "List all members of an organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

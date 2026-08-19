@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Unify Universal Agent Platform API",
+    "version": "0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Platform",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Deduct credits",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/credits/deduct",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deduct credits from the authenticated user's account. The amount must be positive. The balance is allowed to go negative (overdraft) so that downstream spending-limit hooks can detect and block further usage.\n"
+        },
+        {
+          "info": {
+            "name": "Get user basic info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unify.ai/v0/user/basic-info"
+          },
+          "docs": "Get basic information for the authenticated user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

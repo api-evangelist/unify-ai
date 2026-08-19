@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Unify Universal Agent Assistants API",
+    "version": "0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assistants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List assistants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unify.ai/v0/assistant",
+            "params": [
+              {
+                "name": "phone",
+                "value": "",
+                "type": "query",
+                "description": "Filter by phone number"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Filter by email address"
+              },
+              {
+                "name": "agent_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by assistant identifier"
+              },
+              {
+                "name": "list_all_org",
+                "value": "",
+                "type": "query",
+                "description": "List all assistants in the organization"
+              }
+            ]
+          },
+          "docs": "List assistants visible to the caller."
+        },
+        {
+          "info": {
+            "name": "Create an assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/assistant",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new assistant in the caller's active workspace."
+        },
+        {
+          "info": {
+            "name": "Delete an assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.unify.ai/v0/assistant/:assistant_id",
+            "params": [
+              {
+                "name": "assistant_id",
+                "value": "",
+                "type": "path",
+                "description": "Assistant identifier"
+              }
+            ]
+          },
+          "docs": "Delete an assistant that the caller can manage."
+        },
+        {
+          "info": {
+            "name": "Update assistant config",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.unify.ai/v0/assistant/:assistant_id/config",
+            "params": [
+              {
+                "name": "assistant_id",
+                "value": "",
+                "type": "path",
+                "description": "Assistant identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an assistant's editable configuration fields."
+        },
+        {
+          "info": {
+            "name": "Preseed an assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/assistant/:target_assistant_id/preseed",
+            "params": [
+              {
+                "name": "target_assistant_id",
+                "value": "",
+                "type": "path",
+                "description": "Target assistant identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Pre-populate an assistant with initial data or configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,226 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Unify Universal Agent Contexts API",
+    "version": "0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contexts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List contexts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unify.ai/v0/project/:project/contexts",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path",
+                "description": "Project name"
+              }
+            ]
+          },
+          "docs": "List all contexts within a project."
+        },
+        {
+          "info": {
+            "name": "Create a context",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/project/:project/contexts",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path",
+                "description": "Project name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new context within a project."
+        },
+        {
+          "info": {
+            "name": "Get a context",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unify.ai/v0/project/:project/contexts/:name",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path",
+                "description": "Project name"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Context name"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific context by name within a project."
+        },
+        {
+          "info": {
+            "name": "Delete a context",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.unify.ai/v0/project/:project/contexts/:name",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path",
+                "description": "Project name"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Context name"
+              }
+            ]
+          },
+          "docs": "Delete a specific context within a project."
+        },
+        {
+          "info": {
+            "name": "Rename a context",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.unify.ai/v0/project/:project/contexts/:name/rename",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path",
+                "description": "Project name"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Current context name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rename an existing context within a project."
+        },
+        {
+          "info": {
+            "name": "Add logs to context",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/project/:project/contexts/add_logs",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path",
+                "description": "Project name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add existing log entries to a context."
+        },
+        {
+          "info": {
+            "name": "Commit a context snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/project/:project/contexts/:name/commit",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path",
+                "description": "Project name"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Context name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Save a versioned snapshot of a context."
+        },
+        {
+          "info": {
+            "name": "Rollback a context",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/project/:project/contexts/:name/rollback",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path",
+                "description": "Project name"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Context name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Restore a context to a previous committed state."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

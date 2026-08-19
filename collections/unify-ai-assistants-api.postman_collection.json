@@ -1,0 +1,624 @@
+{
+  "item": [
+    {
+      "id": "ff0c6044-e6ad-4834-830b-ec5a1c006151",
+      "name": "Assistants",
+      "description": {
+        "content": "Create and manage AI assistants within your workspace",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "038c77b4-e104-4bb0-95ad-ca16d17b0d3b",
+          "name": "Create an assistant",
+          "request": {
+            "name": "Create an assistant",
+            "description": {
+              "content": "Create a new assistant in the caller's active workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assistant"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"<string>\",\n  \"surname\": \"<string>\",\n  \"config\": {\n    \"key_0\": \"string\",\n    \"key_1\": 5506.241774651554,\n    \"key_2\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "69b1d878-4648-4307-97b6-aed8c84edddd",
+              "name": "Assistant created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assistant"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"<string>\",\n  \"surname\": \"<string>\",\n  \"config\": {\n    \"key_0\": \"string\",\n    \"key_1\": 199,\n    \"key_2\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3465,\n  \"first_name\": \"string\",\n  \"surname\": \"string\",\n  \"config\": {\n    \"key_0\": 3314,\n    \"key_1\": true,\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84f5de7e-f5ef-4cfa-8b45-ebc163df7fd2",
+          "name": "List assistants",
+          "request": {
+            "name": "List assistants",
+            "description": {
+              "content": "List assistants visible to the caller.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assistant"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "phone",
+                  "value": "<string>",
+                  "description": "Filter by phone number"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "Filter by email address"
+                },
+                {
+                  "disabled": false,
+                  "key": "agent_id",
+                  "value": "<integer>",
+                  "description": "Filter by assistant identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "list_all_org",
+                  "value": "false",
+                  "description": "List all assistants in the organization"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0b74afd-abe9-40b9-b776-c418d5807be7",
+              "name": "List of assistants",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assistant"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "agent_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "list_all_org",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2177,\n    \"first_name\": \"string\",\n    \"surname\": \"string\",\n    \"config\": {\n      \"key_0\": 5930.304997561007\n    }\n  },\n  {\n    \"id\": 5652,\n    \"first_name\": \"string\",\n    \"surname\": \"string\",\n    \"config\": {\n      \"key_0\": 8863.016690898648,\n      \"key_1\": 2820.7032010373146,\n      \"key_2\": true\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10c8100b-04a5-4221-9fc3-845de7fc9c89",
+          "name": "Delete an assistant",
+          "request": {
+            "name": "Delete an assistant",
+            "description": {
+              "content": "Delete an assistant that the caller can manage.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assistant",
+                ":assistant_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "assistant_id",
+                  "description": "(Required) Assistant identifier"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b0bc241-ba67-4078-8a27-6eae8fbcb6da",
+              "name": "Assistant deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assistant",
+                    ":assistant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assistant_id",
+                      "description": "(Required) Assistant identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "70e218c8-1797-49e4-a247-95af3564f548",
+              "name": "Assistant not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assistant",
+                    ":assistant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assistant_id",
+                      "description": "(Required) Assistant identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c537703-9094-4fe5-a976-b3ceb0abd4af",
+          "name": "Update assistant config",
+          "request": {
+            "name": "Update assistant config",
+            "description": {
+              "content": "Update an assistant's editable configuration fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assistant",
+                ":assistant_id",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "assistant_id",
+                  "description": "(Required) Assistant identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": 4212\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "05a5cdc6-8f22-4a2c-9395-40ee13078914",
+              "name": "Assistant config updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assistant",
+                    ":assistant_id",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "assistant_id",
+                      "description": "(Required) Assistant identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": true,\n  \"key_1\": 4824,\n  \"key_2\": 1306.5572758947842,\n  \"key_3\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3465,\n  \"first_name\": \"string\",\n  \"surname\": \"string\",\n  \"config\": {\n    \"key_0\": 3314,\n    \"key_1\": true,\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "762edf29-22cb-410c-beb9-99deffcb568a",
+          "name": "Preseed an assistant",
+          "request": {
+            "name": "Preseed an assistant",
+            "description": {
+              "content": "Pre-populate an assistant with initial data or configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assistant",
+                ":target_assistant_id",
+                "preseed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "target_assistant_id",
+                  "description": "(Required) Target assistant identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": true,\n  \"key_1\": true,\n  \"key_2\": 9843,\n  \"key_3\": false,\n  \"key_4\": 6087.812828151762\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "56f2fa3f-bc98-4b2c-96d2-5d6cd93ae0d7",
+              "name": "Assistant preseeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assistant",
+                    ":target_assistant_id",
+                    "preseed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "target_assistant_id",
+                      "description": "(Required) Target assistant identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": true,\n  \"key_1\": false,\n  \"key_2\": 9147\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.unify.ai/v0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "47631bed-8ab4-4112-b060-5a931d4fc835",
+    "name": "Unify Universal Agent Assistants API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Unify Universal API provides a unified REST interface for the Unify platform's LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.\n\n\nContact Support:\n Name: Unify",
+      "type": "text/plain"
+    }
+  }
+}

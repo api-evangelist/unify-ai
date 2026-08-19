@@ -1,0 +1,186 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Unify Universal Agent Spaces API",
+    "version": "0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Spaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List spaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unify.ai/v0/spaces",
+            "params": [
+              {
+                "name": "assistant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter spaces by assistant membership"
+              }
+            ]
+          },
+          "docs": "List all spaces visible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Create a space",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/spaces",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new collaboration space."
+        },
+        {
+          "info": {
+            "name": "Update a space",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.unify.ai/v0/spaces/:space_id",
+            "params": [
+              {
+                "name": "space_id",
+                "value": "",
+                "type": "path",
+                "description": "Space identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the configuration of an existing space."
+        },
+        {
+          "info": {
+            "name": "Delete a space",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.unify.ai/v0/spaces/:space_id",
+            "params": [
+              {
+                "name": "space_id",
+                "value": "",
+                "type": "path",
+                "description": "Space identifier"
+              }
+            ]
+          },
+          "docs": "Delete a space by its identifier."
+        },
+        {
+          "info": {
+            "name": "List space members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unify.ai/v0/spaces/:space_id/members",
+            "params": [
+              {
+                "name": "space_id",
+                "value": "",
+                "type": "path",
+                "description": "Space identifier"
+              }
+            ]
+          },
+          "docs": "List all assistants who are members of a space."
+        },
+        {
+          "info": {
+            "name": "Add space member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unify.ai/v0/spaces/:space_id/members",
+            "params": [
+              {
+                "name": "space_id",
+                "value": "",
+                "type": "path",
+                "description": "Space identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add an assistant as a member of a space."
+        },
+        {
+          "info": {
+            "name": "Remove space member",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.unify.ai/v0/spaces/:space_id/members/:assistant_id",
+            "params": [
+              {
+                "name": "space_id",
+                "value": "",
+                "type": "path",
+                "description": "Space identifier"
+              },
+              {
+                "name": "assistant_id",
+                "value": "",
+                "type": "path",
+                "description": "Assistant identifier"
+              }
+            ]
+          },
+          "docs": "Remove an assistant from a space."
+        },
+        {
+          "info": {
+            "name": "List spaces for an assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unify.ai/v0/assistants/:assistant_id/spaces",
+            "params": [
+              {
+                "name": "assistant_id",
+                "value": "",
+                "type": "path",
+                "description": "Assistant identifier"
+              }
+            ]
+          },
+          "docs": "List all spaces an assistant is a member of."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
