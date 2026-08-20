@@ -33,6 +33,20 @@ modified: '2026-06-12'
 specificationVersion: '0.23'
 tags:
   - LLM
+  - Artificial Intelligence
+  - Large Language Models
+  - LLM Routing
+  - Model Gateway
+  - AI Gateway
+  - OpenAI
+  - Anthropic
+  - Mistral
+  - Benchmarking
+  - Model Comparison
+  - AI Infrastructure
+  - Machine-Learning
+tags_raw:
+  - LLM
   - AI
   - Large Language Models
   - LLM Routing
@@ -52,6 +66,8 @@ apis:
   humanURL: https://unify.ai
   baseURL: https://api.unify.ai/v0
   tags:
+  - Agents
+  tags_raw:
   - Agent
   properties:
   - type: OpenAPI
@@ -92,6 +108,8 @@ apis:
   humanURL: https://unify.ai
   baseURL: https://api.unify.ai/v0
   tags:
+  - Context
+  tags_raw:
   - Contexts
   properties:
   - type: OpenAPI
@@ -132,6 +150,8 @@ apis:
   humanURL: https://unify.ai
   baseURL: https://api.unify.ai/v0
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -172,6 +192,8 @@ apis:
   humanURL: https://unify.ai
   baseURL: https://api.unify.ai/v0
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
