@@ -46,7 +46,6 @@ specificationVersion: '0.23'
 tags:
   - LLM
   - Artificial Intelligence
-  - Large Language Models
   - LLM Routing
   - Model Gateway
   - AI Gateway
@@ -100,6 +99,8 @@ apis:
   humanURL: https://unify.ai
   baseURL: https://api.unify.ai/v0
   tags:
+  - Assistant
+  tags_raw:
   - Assistants
   properties:
   - type: OpenAPI
@@ -226,6 +227,8 @@ apis:
   humanURL: https://unify.ai
   baseURL: https://api.unify.ai/v0
   tags:
+  - Space
+  tags_raw:
   - Spaces
   properties:
   - type: OpenAPI
