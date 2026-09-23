@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Unify Universal Agent Assistants API
-  description: 'The Unify Universal API provides a unified REST interface for the Unify platform''s LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.
-
-    '
+  title: Unify Universal Assistants API
+  description: The Unify Universal API provides a unified REST interface for the Unify platform's LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.
   version: '0'
   contact:
     name: Unify
@@ -151,6 +149,23 @@ paths:
           description: Assistant preseeded
 components:
   schemas:
+    AssistantCreate:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: The assistant's first name
+        surname:
+          type:
+          - string
+          - 'null'
+          description: The assistant's surname
+        config:
+          type: object
+          additionalProperties: true
+          description: Additional assistant creation fields
+      required:
+      - first_name
     Assistant:
       type: object
       properties:
@@ -161,8 +176,9 @@ components:
           type: string
           description: Assistant first name
         surname:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Assistant surname
         config:
           type: object
@@ -170,22 +186,6 @@ components:
           description: Assistant configuration fields
       required:
       - id
-      - first_name
-    AssistantCreate:
-      type: object
-      properties:
-        first_name:
-          type: string
-          description: The assistant's first name
-        surname:
-          type: string
-          nullable: true
-          description: The assistant's surname
-        config:
-          type: object
-          additionalProperties: true
-          description: Additional assistant creation fields
-      required:
       - first_name
   securitySchemes:
     bearerAuth:

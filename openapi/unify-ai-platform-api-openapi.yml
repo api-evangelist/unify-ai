@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Unify Universal Agent Platform API
-  description: 'The Unify Universal API provides a unified REST interface for the Unify platform''s LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.
-
-    '
+  title: Unify Universal Platform API
+  description: The Unify Universal API provides a unified REST interface for the Unify platform's LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.
   version: '0'
   contact:
     name: Unify
@@ -23,9 +21,7 @@ paths:
   /credits/deduct:
     post:
       summary: Deduct credits
-      description: 'Deduct credits from the authenticated user''s account. The amount must be positive. The balance is allowed to go negative (overdraft) so that downstream spending-limit hooks can detect and block further usage.
-
-        '
+      description: Deduct credits from the authenticated user's account. The amount must be positive. The balance is allowed to go negative (overdraft) so that downstream spending-limit hooks can detect and block further usage.
       operationId: deductCredits
       tags:
       - Platform
@@ -66,23 +62,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    UserBasicInfo:
-      type: object
-      properties:
-        id:
-          type: string
-          description: User identifier
-        email:
-          type: string
-          format: email
-        name:
-          type: string
-    ErrorResponse:
-      type: object
-      properties:
-        detail:
-          type: string
-          description: Error message
     CreditDeductResponse:
       type: object
       properties:
@@ -102,32 +81,55 @@ components:
           type: number
           description: Amount of credits to deduct (must be positive)
         category:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Ledger category (e.g. llm, media, setup)
         assistant_id:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Assistant that incurred the cost
         user_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: User who triggered the cost
         organization_id:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Organization that owns the billing account
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Human-readable description of the charge
         detail:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
           additionalProperties: true
           description: Arbitrary metadata dict (model, tokens, etc.)
       required:
       - amount
+    ErrorResponse:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: Error message
+    UserBasicInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User identifier
+        email:
+          type: string
+          format: email
+        name:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

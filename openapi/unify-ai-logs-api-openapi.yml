@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Unify Universal Agent Logs API
-  description: 'The Unify Universal API provides a unified REST interface for the Unify platform''s LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.
-
-    '
+  title: Unify Universal Logs API
+  description: The Unify Universal API provides a unified REST interface for the Unify platform's LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.
   version: '0'
   contact:
     name: Unify
@@ -355,8 +353,9 @@ components:
           type: string
           description: Project this log belongs to
         context:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Context path within the project
         entries:
           type: object

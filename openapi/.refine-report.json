@@ -1,14 +1,7 @@
 {
   "provider": "unify-ai",
   "sources": [
-    "unify-ai-agent-api-openapi.yml",
-    "unify-ai-assistants-api-openapi.yml",
-    "unify-ai-contexts-api-openapi.yml",
-    "unify-ai-logs-api-openapi.yml",
-    "unify-ai-organizations-api-openapi.yml",
-    "unify-ai-platform-api-openapi.yml",
-    "unify-ai-projects-api-openapi.yml",
-    "unify-ai-spaces-api-openapi.yml"
+    "_original/unify-ai-universal-api-openapi.yml"
   ],
   "outputs": [
     "unify-ai-agent-api-openapi.yml",
@@ -23,6 +16,19 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "unify-ai-universal-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "unify-ai-agent-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "unify-ai-assistants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "unify-ai-contexts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "unify-ai-logs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "unify-ai-organizations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "unify-ai-platform-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "unify-ai-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "unify-ai-spaces-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Unify Universal Agent Projects API
-  description: 'The Unify Universal API provides a unified REST interface for the Unify platform''s LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.
-
-    '
+  title: Unify Universal Projects API
+  description: The Unify Universal API provides a unified REST interface for the Unify platform's LLM routing, persistence, logging, assistant management, project management, spaces, context, and organization features. The API base URL is https://api.unify.ai/v0 and all endpoints require Bearer token authentication via the UNIFY_KEY environment variable.
   version: '0'
   contact:
     name: Unify
@@ -185,6 +183,14 @@ paths:
                   $ref: '#/components/schemas/Commit'
 components:
   schemas:
+    Project:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Unique project name
+      required:
+      - name
     Commit:
       type: object
       properties:
@@ -196,14 +202,6 @@ components:
           format: date-time
         message:
           type: string
-    Project:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Unique project name
-      required:
-      - name
   securitySchemes:
     bearerAuth:
       type: http
