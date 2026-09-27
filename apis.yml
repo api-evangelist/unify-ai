@@ -55,7 +55,7 @@ tags:
   - Benchmarking
   - Model Comparison
   - AI Infrastructure
-  - Machine-Learning
+  - Machine Learning
 tags_raw:
   - LLM
   - AI
@@ -70,6 +70,7 @@ tags_raw:
   - Model Comparison
   - AI Infrastructure
   - Machine Learning
+  - Machine-Learning
 apis:
 - aid: unify-ai:unify-ai-agent-api
   name: Unify Agent API
@@ -227,9 +228,11 @@ apis:
   humanURL: https://unify.ai
   baseURL: https://api.unify.ai/v0
   tags:
+  - Spaces
   - Space
   tags_raw:
   - Spaces
+  - Space
   properties:
   - type: OpenAPI
     url: openapi/unify-ai-spaces-api-openapi.yml

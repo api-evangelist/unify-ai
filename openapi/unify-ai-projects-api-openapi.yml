@@ -183,14 +183,6 @@ paths:
                   $ref: '#/components/schemas/Commit'
 components:
   schemas:
-    Project:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Unique project name
-      required:
-      - name
     Commit:
       type: object
       properties:
@@ -202,6 +194,14 @@ components:
           format: date-time
         message:
           type: string
+    Project:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Unique project name
+      required:
+      - name
   securitySchemes:
     bearerAuth:
       type: http
