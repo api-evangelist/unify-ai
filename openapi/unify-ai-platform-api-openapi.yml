@@ -62,6 +62,23 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: Error message
+    UserBasicInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User identifier
+        email:
+          type: string
+          format: email
+        name:
+          type: string
     CreditDeductRequest:
       type: object
       properties:
@@ -101,17 +118,6 @@ components:
           description: Arbitrary metadata dict (model, tokens, etc.)
       required:
       - amount
-    UserBasicInfo:
-      type: object
-      properties:
-        id:
-          type: string
-          description: User identifier
-        email:
-          type: string
-          format: email
-        name:
-          type: string
     CreditDeductResponse:
       type: object
       properties:
@@ -124,12 +130,6 @@ components:
         current_credits:
           type: number
           description: Credits after deduction (may be negative)
-    ErrorResponse:
-      type: object
-      properties:
-        detail:
-          type: string
-          description: Error message
   securitySchemes:
     bearerAuth:
       type: http
