@@ -68,17 +68,6 @@ components:
         detail:
           type: string
           description: Error message
-    UserBasicInfo:
-      type: object
-      properties:
-        id:
-          type: string
-          description: User identifier
-        email:
-          type: string
-          format: email
-        name:
-          type: string
     CreditDeductRequest:
       type: object
       properties:
@@ -118,6 +107,17 @@ components:
           description: Arbitrary metadata dict (model, tokens, etc.)
       required:
       - amount
+    UserBasicInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User identifier
+        email:
+          type: string
+          format: email
+        name:
+          type: string
     CreditDeductResponse:
       type: object
       properties:

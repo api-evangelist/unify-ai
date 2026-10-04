@@ -258,19 +258,6 @@ paths:
           description: Context rolled back
 components:
   schemas:
-    Context:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Context name
-        project:
-          type: string
-          description: Parent project name
-        logs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Log'
     Log:
       type: object
       properties:
@@ -293,6 +280,19 @@ components:
           type: object
           additionalProperties: true
           description: Arbitrary key-value log fields
+    Context:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Context name
+        project:
+          type: string
+          description: Parent project name
+        logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Log'
   securitySchemes:
     bearerAuth:
       type: http
