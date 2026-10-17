@@ -213,19 +213,6 @@ paths:
                   $ref: '#/components/schemas/Space'
 components:
   schemas:
-    Space:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Space identifier
-        name:
-          type: string
-          description: Space name
-        config:
-          type: object
-          additionalProperties: true
-          description: Space configuration
     Assistant:
       type: object
       properties:
@@ -247,6 +234,19 @@ components:
       required:
       - id
       - first_name
+    Space:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Space identifier
+        name:
+          type: string
+          description: Space name
+        config:
+          type: object
+          additionalProperties: true
+          description: Space configuration
   securitySchemes:
     bearerAuth:
       type: http

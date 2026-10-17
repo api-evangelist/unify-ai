@@ -149,23 +149,6 @@ paths:
           description: Assistant preseeded
 components:
   schemas:
-    AssistantCreate:
-      type: object
-      properties:
-        first_name:
-          type: string
-          description: The assistant's first name
-        surname:
-          type:
-          - string
-          - 'null'
-          description: The assistant's surname
-        config:
-          type: object
-          additionalProperties: true
-          description: Additional assistant creation fields
-      required:
-      - first_name
     Assistant:
       type: object
       properties:
@@ -186,6 +169,23 @@ components:
           description: Assistant configuration fields
       required:
       - id
+      - first_name
+    AssistantCreate:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: The assistant's first name
+        surname:
+          type:
+          - string
+          - 'null'
+          description: The assistant's surname
+        config:
+          type: object
+          additionalProperties: true
+          description: Additional assistant creation fields
+      required:
       - first_name
   securitySchemes:
     bearerAuth:

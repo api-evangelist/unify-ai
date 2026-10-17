@@ -62,12 +62,17 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    ErrorResponse:
+    UserBasicInfo:
       type: object
       properties:
-        detail:
+        id:
           type: string
-          description: Error message
+          description: User identifier
+        email:
+          type: string
+          format: email
+        name:
+          type: string
     CreditDeductRequest:
       type: object
       properties:
@@ -107,17 +112,12 @@ components:
           description: Arbitrary metadata dict (model, tokens, etc.)
       required:
       - amount
-    UserBasicInfo:
+    ErrorResponse:
       type: object
       properties:
-        id:
+        detail:
           type: string
-          description: User identifier
-        email:
-          type: string
-          format: email
-        name:
-          type: string
+          description: Error message
     CreditDeductResponse:
       type: object
       properties:
